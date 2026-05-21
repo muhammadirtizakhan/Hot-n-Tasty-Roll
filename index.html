@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<title>Hot N Tasty Roll | Full Menu · Favorites · Collection</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Poppins:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<!-- Replace this line -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+<!-- With this (more reliable version) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="slider-bg">
+  <div class="slide on" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format')"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1887&auto=format')"></div>
+  <div class="slide" style="background-image:url('https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?auto=compress')"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1281&auto=format')"></div>
+</div>
+<div class="overlay"></div>
+
+<!-- TOAST CONTAINER -->
+<div id="toastContainer" class="toast-container"></div>
+
+<!-- FLOATING ICONS - WhatsApp & Chatbot -->
+<div class="floating-icons">
+  <a href="https://wa.me/923182370631?text=Hi!%20I%20want%20to%20order%20from%20Hot%20N%20Tasty%20Roll" target="_blank" class="float-whatsapp" id="whatsappBtn">
+    <i class="fab fa-whatsapp"></i>
+    <span class="float-label">WhatsApp</span>
+  </a>
+  <button class="float-chatbot" id="chatbotBtn">
+    <i class="fas fa-robot"></i>
+    <span class="float-label">Chat</span>
+  </button>
+</div>
+
+<!-- Chatbot Modal -->
+<div class="chatbot-modal" id="chatbotModal">
+  <div class="chatbot-header">
+    <h3><i class="fas fa-robot"></i> Hot N Tasty Assistant</h3>
+    <button class="close-chat" id="closeChatBtn">&times;</button>
+  </div>
+  <div class="chatbot-body">
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-message bot">Welcome to Hot N Tasty Roll! How can I help you today?</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="chatInput" placeholder="Type your message...">
+      <button id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="nav" id="mainNav">
+  <a href="#" onclick="nav('home');return false;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReu5MboTl1KCxufaP96ZdvmVBWXvOjlcoVmg&s" class="logo-img" alt="Logo"></a>
+  
+  <div class="nav-center-pill">
+    <div class="nav-links-group">
+      <a data-nav="home" class="nav-link act">Home</a>
+      <a data-nav="about" class="nav-link">About</a>
+      <a data-nav="menu" class="nav-link">Menu</a>
+      <a data-nav="deals" class="nav-link">Deals</a>
+      <a data-nav="favorites" class="nav-link">Favorites</a>
+      <a data-nav="collection" class="nav-link">Collection</a>
+    </div>
+  </div>
+
+  <div class="nav-right-group">
+    <button class="btn-login" id="openModalBtn">Login <i class="fas fa-arrow-right"></i></button>
+
+    <div class="profile-btn-wrap" id="profileWrap" style="display:none">
+      <button class="profile-btn" id="profileBtn" onclick="toggleProfileDropdown()">
+        <span id="profileInitial">U</span>
+      </button>
+      <div class="profile-dropdown" id="profileDropdown">
+        <div class="profile-user-info">
+          <div class="u-name" id="dropdownName">User</div>
+          <div class="u-email" id="dropdownEmail">user@email.com</div>
+        </div>
+        <button class="dropdown-item" onclick="openChangeName()">
+          <i class="fa-solid fa-user-pen"></i> Change Name
+        </button>
+        <button class="dropdown-item" onclick="nav('favorites');closeProfileDropdown()">
+          <i class="fa-regular fa-heart"></i> My Favorites
+        </button>
+        <button class="dropdown-item" onclick="nav('collection');closeProfileDropdown()">
+          <i class="fa-solid fa-layer-group"></i> My Collection
+        </button>
+        <div class="dropdown-divider"></div>
+        <button class="dropdown-item" onclick="openChangePw()">
+          <i class="fa-solid fa-lock"></i> Change Password
+        </button>
+        <div class="dropdown-divider"></div>
+        <button class="dropdown-item logout" onclick="doLogout()">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </div>
+    </div>
+
+    <button class="ham-btn" id="hamBtn">
+      <span class="ham-line"></span>
+      <span class="ham-line"></span>
+      <span class="ham-line"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- RIGHT SIDEBAR -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-deco-bg">
+    <div class="sidebar-orb sidebar-orb-1"></div>
+    <div class="sidebar-orb sidebar-orb-2"></div>
+    <div class="sidebar-grid-lines"></div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="fas fa-utensils"></i></div>
+      <div>
+        <div class="sidebar-brand-name">Hot N Tasty</div>
+        <div class="sidebar-brand-sub">Premium Rolls & More</div>
+      </div>
+    </div>
+    <button class="close-sidebar" id="closeSidebarBtn">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <div class="sidebar-divider"></div>
+
+  <div class="sidebar-menu">
+    <div class="sidebar-section-label">NAVIGATE</div>
+    <a data-nav="home" class="sidebar-link">
+      <div class="sidebar-link-icon"><i class="fas fa-house-chimney"></i></div>
+      <span class="sidebar-link-text">Home</span>
+      <div class="sidebar-link-arrow"><i class="fas fa-chevron-right"></i></div>
+    </a>
+    <a data-nav="about" class="sidebar-link">
+      <div class="sidebar-link-icon"><i class="fas fa-star"></i></div>
+      <span class="sidebar-link-text">About Us</span>
+      <div class="sidebar-link-arrow"><i class="fas fa-chevron-right"></i></div>
+    </a>
+    
+    <!-- MENU WITH DROPDOWN -->
+ <!-- MENU WITH DROPDOWN -->
+<div class="sidebar-link-dropdown">
+  <a class="sidebar-link">  <!-- REMOVE data-nav="menu" from here -->
+    <div class="sidebar-link-icon"><i class="fas fa-bowl-food"></i></div>
+    <span class="sidebar-link-text">Our Menu</span>
+    <div class="sidebar-link-arrow dropdown-toggle"><i class="fas fa-chevron-down"></i></div>
+  </a>
+  <div class="sidebar-dropdown-menu">
+    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('SHAPATAR SPECIAL JUMBO ROLLS'); return false;">
+      <i class="fas fa-circle"></i> Shapatar Jumbo Rolls
+    </a>
+    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('CHICKEN ROLLS'); return false;">
+      <i class="fas fa-circle"></i> Chicken Rolls
+    </a>
+    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('CHICKEN MALAI ROLLS'); return false;">
+      <i class="fas fa-circle"></i> Malai Rolls
+    </a>
+    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('BEEF BOTI ROLLS'); return false;">
+      <i class="fas fa-circle"></i> Beef Boti Rolls
+    </a>
+    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('BEEF KABAB ROLLS'); return false;">
+      <i class="fas fa-circle"></i> Beef Kabab Rolls
+    </a>
+    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('BURGERS'); return false;">
+      <i class="fas fa-circle"></i> Burgers
+    </a>
+    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('ZINGER BURGER'); return false;">
+      <i class="fas fa-circle"></i> Zinger Burgers
+    </a>
+    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('PIZZA'); return false;">
+      <i class="fas fa-circle"></i> Pizza
+    </a>
+    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('BAR B.Q'); return false;">
+      <i class="fas fa-circle"></i> BBQ
+    </a>
+    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('CHINESE'); return false;">
+      <i class="fas fa-circle"></i> Chinese
+    </a>
+    <div class="sidebar-dropdown-divider"></div>
+    <a href="#" class="sidebar-dropdown-item view-all" onclick="nav('menu'); return false;">
+      <i class="fas fa-th-large"></i> View Full Menu
+    </a>
+  </div>
+</div>
+    
+    <a data-nav="deals" class="sidebar-link">
+      <div class="sidebar-link-icon"><i class="fas fa-fire-flame-curved"></i></div>
+      <span class="sidebar-link-text">Hot Deals</span>
+      <div class="sidebar-link-badge">HOT</div>
+    </a>
+
+    <div class="sidebar-divider" style="margin:16px 0"></div>
+    <div class="sidebar-section-label">PERSONAL</div>
+
+    <a data-nav="favorites" class="sidebar-link">
+      <div class="sidebar-link-icon"><i class="fas fa-heart"></i></div>
+      <span class="sidebar-link-text">Favorites</span>
+      <div class="sidebar-link-arrow"><i class="fas fa-chevron-right"></i></div>
+    </a>
+    <a data-nav="collection" class="sidebar-link">
+      <div class="sidebar-link-icon"><i class="fas fa-layer-group"></i></div>
+      <span class="sidebar-link-text">Collection</span>
+      <div class="sidebar-link-arrow"><i class="fas fa-chevron-right"></i></div>
+    </a>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-footer-card">
+      <div class="sidebar-footer-title">Get in Touch</div>
+      <div class="sidebar-contact-item">
+        <i class="fas fa-phone"></i>
+        <span>0318-2370631</span>
+      </div>
+      <div class="sidebar-contact-item">
+        <i class="fas fa-phone"></i>
+        <span>0320-3742455</span>
+      </div>
+      <div class="sidebar-contact-item">
+        <i class="fas fa-phone"></i>
+        <span>0341-3139107</span>
+      </div>
+      <div class="sidebar-contact-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Shop #9, Malir 15, Muhabbat Nagar, Karachi</span>
+      </div>
+      <div class="sidebar-contact-item">
+        <i class="fas fa-clock"></i>
+        <span>Mon–Sun: 11am–11pm</span>
+      </div>
+      <div class="sidebar-social">
+        <a href="#" class="sidebar-social-btn"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="sidebar-social-btn"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="sidebar-social-btn"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-content">
+  <!-- HOME -->
+  <div id="homePage">
+    <section class="hero">
+      <h1>Unveil the <span>Finest</span></h1>
+      <p class="hero-sub"><span id="type"></span><span id="cursor">|</span></p>
+      <div><button class="cta-btn" id="exploreBtn">Start Your Exploration <i class="fas fa-arrow-right"></i></button></div>
+      <div class="scroll-hint"><div class="wheel"><div class="wdot"></div></div></div>
+    </section>
+    <section class="dishes-section reveal">
+      <div class="subtitle-dish">HOT N TASTY SPECIALS</div>
+      <h1 class="title-dish">Popular Dishes</h1>
+      <p class="description-dish">Discover our signature rolls, burgers and grilled delights crafted with passion.</p>
+      <div class="cards-grid" id="dishesGrid"></div>
+    </section>
+
+    <!-- ABOUT SECTION (HOME) -->
+    <div class="luxury-about-wrap reveal">
+      <section class="about-section" id="aboutSectionHome">
+        <div class="about-deco-circle about-deco-1"></div>
+        <div class="about-deco-circle about-deco-2"></div>
+        <div class="about-deco-line"></div>
+
+        <div class="about-content">
+          <div class="about-badge">
+            <i class="fas fa-award"></i>
+            <span>Karachi's Finest Fast Food</span>
+          </div>
+          <h1 class="about-title">The Story of <span>Hot N Tasty</span></h1>
+          <p class="about-text">Born in the heart of Malir, Karachi, Hot N Tasty Roll started as a dream to serve food that ignites the soul. Every roll we craft carries culinary passion, premium ingredients sourced from trusted suppliers, and signature recipes that keep you coming back.</p>
+          <p class="about-text">From our sizzling BBQ platters to our legendary signature rolls — we don't just cook food, we create memories that make us Karachi's most beloved fast food destination.</p>
+          
+          <div class="about-stats">
+            <div class="about-stat">
+              <div class="about-stat-num">5000+</div>
+              <div class="about-stat-label">Happy Customers</div>
+            </div>
+            <div class="about-stat-divider"></div>
+            <div class="about-stat">
+              <div class="about-stat-num">80+</div>
+              <div class="about-stat-label">Menu Items</div>
+            </div>
+            <div class="about-stat-divider"></div>
+            <div class="about-stat">
+              <div class="about-stat-num">4.8</div>
+              <div class="about-stat-label">Customer Rating</div>
+            </div>
+          </div>
+
+          <div class="about-cta-row">
+            <button class="btn-about" id="exploreAboutBtn">Explore Menu</button>
+            <button class="btn-about-ghost" onclick="nav('about')">Our Story <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
+
+        <div class="image-side">
+          <div class="image-glow"></div>
+          <div class="about-img-stack">
+            <div class="about-img-main">
+              <div class="circle-rotating"><img id="rotatingImg" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format" alt="Restaurant"></div>
+            </div>
+            <div class="about-img-badge-card">
+              <div class="about-badge-card-icon"><i class="fas fa-fire"></i></div>
+              <div>
+                <div class="about-badge-card-title">Top Rated</div>
+                <div class="about-badge-card-sub">4.8 / 5.0 Stars</div>
+              </div>
+            </div>
+            <div class="about-img-badge-card about-img-badge-card-2">
+              <div class="about-badge-card-icon"><i class="fas fa-truck-fast"></i></div>
+              <div>
+                <div class="about-badge-card-title">Fast Delivery</div>
+                <div class="about-badge-card-sub">Avg. 30-40 min</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="testimonials-section reveal">
+      <div class="testimonial-header">
+        <div class="testimonial-sub">GUEST LOVE</div>
+        <h2 class="testimonial-title">What <span>Food Lovers</span> Say</h2>
+      </div>
+      <div class="testimonials-grid" id="testimonialsGrid"></div>
+    </section>
+ <!-- NEWSLETTER SECTION - With Formspree Integration -->
+<section class="newsletter-section reveal">
+  <div class="newsletter-card">
+    <div class="newsletter-left">
+      <h3>Get <span style="color:var(--red)">Hot & Tasty</span> Updates</h3>
+      <p>Subscribe to receive exclusive deals, new menu alerts, and special offers every week.</p>
+      <span class="highlight"><i class="fas fa-fire"></i> 20% OFF on first order for subscribers!</span>
+    </div>
+    <div class="newsletter-right">
+      <form id="subscribeForm" action="https://formspree.io/f/mnjlloaj" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <input type="text" name="name" id="subName" placeholder="Full Name" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" name="phone" id="subPhone" placeholder="Phone Number">
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:16px">
+          <input type="email" name="email" id="subEmail" placeholder="Email Address" required>
+        </div>
+        <input type="hidden" name="_subject" value="New Newsletter Subscription">
+        <input type="hidden" name="_replyto" id="replytoEmail">
+        <button type="submit" class="subscribe-btn"><i class="fas fa-paper-plane"></i> Subscribe Now</button>
+      </form>
+    </div>
+  </div>
+</section>
+  </div>
+
+  <!-- ABOUT PAGE -->
+  <div id="aboutPage" style="display:none">
+    <div class="about-full-page">
+      <div class="about-page-hero">
+        <div class="about-page-hero-bg"></div>
+        <div class="about-page-hero-content">
+          <div class="about-page-eyebrow">Our Story</div>
+          <h1 class="about-page-title">Where Flavor Meets <span>Passion</span></h1>
+          <p class="about-page-subtitle">A culinary journey that started with a dream and became Karachi's most beloved food destination.</p>
+        </div>
+        <div class="about-page-hero-scroll">
+          <div class="about-scroll-line"></div>
+        </div>
+      </div>
+
+      <div class="about-story-section">
+        <div class="about-story-grid">
+          <div class="about-story-visual">
+            <div class="about-story-img-wrap">
+              <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1974&auto=format" alt="Our Kitchen" class="about-story-img">
+              <div class="about-story-img-overlay">
+                <div class="about-story-img-tag">Est. 2020</div>
+              </div>
+            </div>
+            <div class="about-story-img-secondary-wrap">
+              <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format" alt="Our Food" class="about-story-img-secondary">
+            </div>
+          </div>
+          <div class="about-story-text">
+            <div class="about-story-eyebrow">The Beginning</div>
+            <h2 class="about-story-heading">From a Small Stall to <span>Karachi's Favorite</span></h2>
+            <p class="about-story-body">It all began with a vision to serve authentic, delicious fast food that Karachi deserves. Starting from a humble beginning in Malir, we focused on quality ingredients, perfect recipes, and exceptional service.</p>
+            <p class="about-story-body">Word spread fast. Today, Hot N Tasty Roll is one of Karachi's most talked-about food destinations, serving thousands of satisfied customers who keep coming back for our signature flavors.</p>
+            <div class="about-story-values">
+              <div class="about-value-chip"><i class="fas fa-leaf"></i> Fresh Ingredients</div>
+              <div class="about-value-chip"><i class="fas fa-fire"></i> Authentic Spices</div>
+              <div class="about-value-chip"><i class="fas fa-heart"></i> Made with Love</div>
+              <div class="about-value-chip"><i class="fas fa-shield-halved"></i> Hygiene First</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-stats-section">
+        <div class="about-stats-inner">
+          <div class="about-stats-card">
+            <div class="about-stats-num">500+</div>
+            <div class="about-stats-label">Happy Customers</div>
+            <div class="about-stats-sub">And counting every day</div>
+          </div>
+          <div class="about-stats-card">
+            <div class="about-stats-num">80+</div>
+            <div class="about-stats-label">Menu Items</div>
+            <div class="about-stats-sub">From rolls to BBQ</div>
+          </div>
+          <div class="about-stats-card">
+            <div class="about-stats-num">4.8</div>
+            <div class="about-stats-label">Average Rating</div>
+            <div class="about-stats-sub">Across all platforms</div>
+          </div>
+          <div class="about-stats-card">
+            <div class="about-stats-num">3</div>
+            <div class="about-stats-label">Delivery Partners</div>
+            <div class="about-stats-sub">For fast service</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-values-section">
+        <div class="about-values-header">
+          <div class="about-values-eyebrow">What We Stand For</div>
+          <h2 class="about-values-title">Our Core <span>Values</span></h2>
+        </div>
+        <div class="about-values-grid">
+          <div class="about-value-card">
+            <div class="about-value-card-icon"><i class="fas fa-wheat-awn"></i></div>
+            <h3>Quality First</h3>
+            <p>We source only the freshest ingredients from trusted suppliers — never compromising on quality or taste.</p>
+          </div>
+          <div class="about-value-card">
+            <div class="about-value-card-icon"><i class="fas fa-fire-flame-curved"></i></div>
+            <h3>Authentic Flavors</h3>
+            <p>Every recipe is carefully crafted with the perfect balance of spices and culinary expertise.</p>
+          </div>
+          <div class="about-value-card">
+            <div class="about-value-card-icon"><i class="fas fa-users"></i></div>
+            <h3>Customer First</h3>
+            <p>We're committed to providing exceptional service and memorable dining experiences.</p>
+          </div>
+          <div class="about-value-card">
+            <div class="about-value-card-icon"><i class="fas fa-trophy"></i></div>
+            <h3>Excellence Always</h3>
+            <p>We strive for excellence in everything we do — from food preparation to customer service.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-cta-section">
+        <div class="about-cta-inner">
+          <h2 class="about-cta-title">Ready to Experience the Best?</h2>
+          <p class="about-cta-sub">Explore our full menu and order your favorites today.</p>
+          <button class="cta-btn" onclick="nav('menu')">Explore Menu <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="menuPage" style="display:none">
+    <div class="menu-page">
+      <div class="page-header"><h1>Our Signature Menu</h1><p>Explore curated categories &amp; premium delights</p></div>
+      <div class="category-slider" id="categoryContainer"></div>
+      <div class="cards-grid" id="menuItemsGrid"></div>
+    </div>
+  </div>
+  <div id="dealsPage" style="display:none">
+    <div class="deals-page">
+      <div class="page-header"><h1>Hot Deals &amp; Offers</h1><p>Limited time discounts — don't miss out!</p></div>
+      <div class="cards-grid" id="dealsGrid"></div>
+    </div>
+  </div>
+  <div id="favoritesPage" style="display:none">
+    <div class="favorites-page">
+      <div class="page-header"><h1>My Favorites</h1><p>Your beloved dishes — saved just for you.</p></div>
+      <div class="cards-grid" id="favoritesGrid"></div>
+    </div>
+  </div>
+  <div id="collectionPage" style="display:none">
+    <div class="collection-page">
+      <div class="page-header"><h1>My Collection</h1><p>All your saved items in one place.</p></div>
+      <div class="cards-grid" id="collectionGrid"></div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-col footer-logo">
+      <h2>Hot N <span>Tasty Roll</span></h2>
+      <p>Experience the finest culinary journey with authentic flavors, premium ingredients, and unforgettable taste.</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a data-nav="home">Home</a></li><li><a data-nav="about">About Us</a></li>
+        <li><a data-nav="menu">Menu</a></li><li><a data-nav="deals">Deals & Offers</a></li>
+        <li><a data-nav="favorites">Favorites</a></li><li><a data-nav="collection">Collection</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul><li><a>FAQ</a></li><li><a>Privacy Policy</a></li><li><a>Terms & Conditions</a></li><li><a>Delivery Info</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Info</h4>
+      <ul>
+        <li><i class="fas fa-map-marker-alt" style="margin-right:8px;color:var(--red)"></i>Shop #9, Malir 15, Muhabbat Nagar, Karachi</li>
+        <li><i class="fas fa-phone" style="margin-right:8px;color:var(--red)"></i>0318-2370631 / 0320-3742455</li>
+        <li><i class="fas fa-phone" style="margin-right:8px;color:var(--red)"></i>0341-3139107 (WhatsApp)</li>
+        <li><i class="fas fa-clock" style="margin-right:8px;color:var(--red)"></i>Mon–Sun: 11am–11pm</li>
+      </ul>
+      <div class="payment-icons"><i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i><i class="fab fa-cc-paypal"></i><i class="fab fa-google-pay"></i></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>&copy; 2025 Hot N Tasty Roll. All Rights Reserved. Designed with <i class="fas fa-heart" style="color:var(--red)"></i> for food lovers.</p></div>
+</footer>
+
+<!-- AUTH MODAL -->
+<div class="modal-wrap" id="authModal">
+  <div class="stunning-card">
+    <div class="modal-glow"></div>
+    <div class="modal-header">
+      <div class="modal-logo"><i class="fas fa-utensils"></i><span>Hot N <em>Tasty Roll</em></span></div>
+      <h3>Welcome Back</h3>
+      <p>Sign in to continue your culinary journey</p>
+    </div>
+    <div class="tab-buttons">
+      <div class="tab-btn active" data-tab="login">SIGN IN</div>
+      <div class="tab-btn" data-tab="register">REGISTER</div>
+    </div>
+    <div class="modal-form">
+      <div id="loginForm">
+        <div class="input-group"><i class="fas fa-envelope"></i><input type="email" id="loginEmail" placeholder="Email address"></div>
+        <div class="input-group"><i class="fas fa-lock"></i><input type="password" id="loginPass" placeholder="Password"></div>
+        <div class="checkbox-row">
+          <label class="checkbox-label"><div class="custom-check" id="rememberCheck"></div> Remember me</label>
+          <a class="forgot-link" id="forgotBtn">Forgot password?</a>
+        </div>
+        <button class="auth-btn" id="doLoginBtn"><i class="fas fa-arrow-right-to-bracket"></i> Sign In</button>
+        <div class="switch-text">New to Hot N Tasty? <button id="switchToReg">Create account →</button></div>
+      </div>
+      <div id="registerForm" style="display:none;">
+        <div class="input-group"><i class="fas fa-user"></i><input type="text" id="regName" placeholder="Full name"></div>
+        <div class="input-group"><i class="fas fa-envelope"></i><input type="email" id="regEmail" placeholder="Email address"></div>
+        <div class="input-group"><i class="fas fa-lock"></i><input type="password" id="regPass" placeholder="Create password (min 6 chars)"></div>
+        <button class="auth-btn" id="doRegBtn"><i class="fas fa-user-plus"></i> Create Account</button>
+        <div class="switch-text">Already have an account? <button id="switchToLogin">Sign in →</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHANGE PASSWORD MODAL -->
+<div class="cpw-modal" id="cpwModal">
+  <div class="cpw-card">
+    <h3><i class="fa-solid fa-lock" style="color:var(--red);margin-right:8px"></i>Change Password</h3>
+    <div class="input-group"><i class="fas fa-lock"></i><input type="password" id="cpwNew" placeholder="New password (min 6 chars)"></div>
+    <div class="input-group"><i class="fas fa-lock"></i><input type="password" id="cpwConfirm" placeholder="Confirm new password"></div>
+    <button class="auth-btn" onclick="submitChangePw()" style="margin-top:1rem"><i class="fas fa-check"></i> Update Password</button>
+    <button onclick="closeCpwModal()" style="width:100%;margin-top:.8rem;background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;font-size:.8rem">Cancel</button>
+  </div>
+</div>
+
+<!-- CHANGE NAME MODAL -->
+<div class="cpw-modal" id="changeNameModal">
+  <div class="cpw-card">
+    <h3><i class="fa-solid fa-user-pen" style="color:var(--red);margin-right:8px"></i>Change Name</h3>
+    <div class="input-group"><i class="fas fa-user"></i><input type="text" id="newName" placeholder="New display name"></div>
+    <button class="auth-btn" onclick="submitChangeName()" style="margin-top:1rem"><i class="fas fa-check"></i> Update Name</button>
+    <button onclick="closeChangeNameModal()" style="width:100%;margin-top:.8rem;background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;font-size:.8rem">Cancel</button>
+  </div>
+</div>
+
+<script src="assets.js"></script>
+<script src="chatbotdata.js"></script>
+<script src="chatbot.js"></script>
+<script type="module" src="script.js"></script>
+</body>
+</html>
