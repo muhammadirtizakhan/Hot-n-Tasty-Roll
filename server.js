@@ -1,11 +1,7 @@
-/* ================================================================
-   HOT N TASTY ROLL - BACKEND SERVER (FULLY FIXED)
-   Database: Supabase
-=============================================================== */
-
 const express = require('express');
 const cors = require('cors');
 const { createClient } = require('@supabase/supabase-js');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -23,6 +19,13 @@ const supabase = createClient(
 );
 
 console.log('✅ Supabase connected');
+
+// ================================================================
+// SERVE HTML ROOT
+// ================================================================
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 // ================================================================
 // HEALTH CHECK
@@ -44,7 +47,6 @@ app.post('/api/auth/register', async (req, res) => {
             return res.status(400).json({ error: 'All fields required' });
         }
         
-        // Check if user exists
         const { data: existing } = await supabase
             .from('food_users')
             .select('email')
@@ -54,7 +56,6 @@ app.post('/api/auth/register', async (req, res) => {
             return res.status(400).json({ error: 'Email already registered' });
         }
         
-        // Insert user
         const { data: user, error } = await supabase
             .from('food_users')
             .insert([{ name, email, password, phone: phone || null }])
@@ -90,7 +91,6 @@ app.post('/api/auth/login', async (req, res) => {
             return res.status(400).json({ error: 'Email and password required' });
         }
         
-        // Find user
         const { data: users, error } = await supabase
             .from('food_users')
             .select('*')
@@ -106,7 +106,6 @@ app.post('/api/auth/login', async (req, res) => {
         
         const user = users[0];
         
-        // Compare password
         if (user.password !== password) {
             return res.status(401).json({ error: 'Invalid email or password' });
         }
@@ -123,7 +122,7 @@ app.post('/api/auth/login', async (req, res) => {
 });
 
 // ================================================================
-// GET FAVORITES
+// FAVORITES
 // ================================================================
 app.get('/api/favorites/:userId', async (req, res) => {
     try {
@@ -143,9 +142,6 @@ app.get('/api/favorites/:userId', async (req, res) => {
     }
 });
 
-// ================================================================
-// ADD TO FAVORITES
-// ================================================================
 app.post('/api/favorites', async (req, res) => {
     try {
         const { userId, itemId, itemName, itemCategory, itemPrice, itemImage } = req.body;
@@ -174,9 +170,6 @@ app.post('/api/favorites', async (req, res) => {
     }
 });
 
-// ================================================================
-// REMOVE FROM FAVORITES
-// ================================================================
 app.delete('/api/favorites/:userId/:itemId', async (req, res) => {
     try {
         const { userId, itemId } = req.params;
@@ -197,7 +190,7 @@ app.delete('/api/favorites/:userId/:itemId', async (req, res) => {
 });
 
 // ================================================================
-// GET COLLECTIONS
+// COLLECTIONS
 // ================================================================
 app.get('/api/collections/:userId', async (req, res) => {
     try {
@@ -217,9 +210,6 @@ app.get('/api/collections/:userId', async (req, res) => {
     }
 });
 
-// ================================================================
-// ADD TO COLLECTION
-// ================================================================
 app.post('/api/collections', async (req, res) => {
     try {
         const { userId, itemId, itemName, itemCategory, itemPrice, itemImage, note } = req.body;
@@ -249,9 +239,6 @@ app.post('/api/collections', async (req, res) => {
     }
 });
 
-// ================================================================
-// REMOVE FROM COLLECTION
-// ================================================================
 app.delete('/api/collections/:userId/:itemId', async (req, res) => {
     try {
         const { userId, itemId } = req.params;
@@ -272,21 +259,10 @@ app.delete('/api/collections/:userId/:itemId', async (req, res) => {
 });
 
 // ================================================================
-// NEWSLETTER SUBSCRIBE
+// NEWSLETTER
 // ================================================================
 app.post('/api/subscribe', async (req, res) => {
-    try {
-        const { name, email, phone } = req.body;
-        
-        if (!name || !email) {
-            return res.status(400).json({ error: 'Name and email required' });
-        }
-        
-        res.json({ success: true, message: 'Subscribed successfully' });
-        
-    } catch (error) {
-        res.status(500).json({ error: 'Subscription failed' });
-    }
+    res.json({ success: true, message: 'Subscribed successfully' });
 });
 
 // ================================================================
