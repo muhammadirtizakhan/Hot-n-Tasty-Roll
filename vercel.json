@@ -1,14 +1,28 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "*.js", "use": "@vercel/node" },
-    { "src": "*.css", "use": "@vercel/static" },
-    { "src": "*.html", "use": "@vercel/static" }
-  ],
+  "functions": {
+    "server.js": {
+      "runtime": "nodejs20.x"
+    }
+  },
   "routes": [
-    { "src": "/api/(.*)", "dest": "/server.js" },
-    { "src": "/(.*\\.js)", "dest": "/$1" },
-    { "src": "/(.*\\.css)", "dest": "/$1" },
-    { "src": "/(.*)", "dest": "/index.html" }
+    {
+      "src": "/api/(.*)",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/(.*\\.js)",
+      "dest": "/$1",
+      "runtime": "static"
+    },
+    {
+      "src": "/(.*\\.css)",
+      "dest": "/$1",
+      "runtime": "static"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
   ]
 }
