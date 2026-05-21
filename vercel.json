@@ -1,34 +1,9 @@
 {
   "version": 2,
-  "functions": {
-    "server.js": {
-      "runtime": "nodejs20.x"
-    }
-  },
   "routes": [
     {
       "src": "/api/(.*)",
       "dest": "/server.js"
-    },
-    {
-      "src": "/style.css",
-      "dest": "/style.css"
-    },
-    {
-      "src": "/script.js",
-      "dest": "/script.js"
-    },
-    {
-      "src": "/assets.js",
-      "dest": "/assets.js"
-    },
-    {
-      "src": "/chatbot-data.js",
-      "dest": "/chatbot-data.js"
-    },
-    {
-      "src": "/chatbot.js",
-      "dest": "/chatbot.js"
     },
     {
       "src": "/(.*)",
