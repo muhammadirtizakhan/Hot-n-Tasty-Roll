@@ -3,15 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <link rel="icon" type="image/x-icon" href="https://images.deliveryhero.io/image/fd-pk/pk-logos/cj4oo-logo.jpg">
-<title>Hot N Tasty Roll </title>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Poppins:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-<!-- Replace this line -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
-<!-- With this (more reliable version) -->
+<!-- ================================================ -->
+<!-- SEO META TAGS -->
+<!-- ================================================ -->
+<title>Hot N Tasty Roll | Best Rolls, Burgers & BBQ in Karachi</title>
+<meta name="description" content="Hot N Tasty Roll — Karachi's finest fast food restaurant in Malir 15. Enjoy signature rolls, zinger burgers, BBQ, pizza & deals. Order now or visit us today!">
+<meta name="keywords" content="Hot N Tasty Roll, rolls Karachi, best rolls Malir, zinger burger Karachi, BBQ Karachi, fast food Karachi, chicken rolls, beef rolls, deals Karachi, food delivery Karachi">
+<meta name="author" content="Hot N Tasty Roll">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://hot-n-tasty-roll.vercel.app/">
+
+<!-- Open Graph (WhatsApp, Facebook preview) -->
+<meta property="og:title" content="Hot N Tasty Roll | Best Rolls & Burgers in Karachi">
+<meta property="og:description" content="Karachi's finest fast food in Malir 15. Signature rolls, burgers, BBQ & amazing deals. Order now!">
+<meta property="og:url" content="https://hot-n-tasty-roll.vercel.app/">
+<meta property="og:type" content="restaurant">
+<meta property="og:image" content="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format">
+<meta property="og:locale" content="en_PK">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hot N Tasty Roll | Best Rolls & Burgers in Karachi">
+<meta name="twitter:description" content="Karachi's finest fast food in Malir 15. Signature rolls, burgers, BBQ & amazing deals.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format">
+
+<!-- Local Business Schema (Google Rich Results) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Hot N Tasty Roll",
+  "description": "Karachi's finest fast food restaurant serving signature rolls, burgers, BBQ and pizza in Malir 15.",
+  "url": "https://hot-n-tasty-roll.vercel.app/",
+  "telephone": "+92-318-2370631",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Shop #9, Malir 15, Muhabbat Nagar",
+    "addressLocality": "Karachi",
+    "addressCountry": "PK"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "24.8985",
+    "longitude": "67.1606"
+  },
+  "openingHours": "Mo-Su 11:00-23:00",
+  "servesCuisine": ["Pakistani", "Fast Food", "BBQ"],
+  "priceRange": "Rs. 150 - Rs. 2500",
+  "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format"
+}
+</script>
+<!-- ================================================ -->
+
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Poppins:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -28,12 +75,12 @@
 
 <!-- FLOATING ICONS - WhatsApp & Chatbot -->
 <div class="floating-icons">
-  <a href="https://wa.me/923182370631?text=Hi!%20I%20want%20to%20order%20from%20Hot%20N%20Tasty%20Roll" target="_blank" class="float-whatsapp" id="whatsappBtn">
-    <i class="fab fa-whatsapp"></i>
+  <a href="https://wa.me/923182370631?text=Hi!%20I%20want%20to%20order%20from%20Hot%20N%20Tasty%20Roll" target="_blank" class="float-whatsapp" id="whatsappBtn" aria-label="Contact us on WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
     <span class="float-label">WhatsApp</span>
   </a>
-  <button class="float-chatbot" id="chatbotBtn">
-    <i class="fas fa-robot"></i>
+  <button class="float-chatbot" id="chatbotBtn" aria-label="Open AI Chatbot">
+    <i class="fas fa-robot" aria-hidden="true"></i>
     <span class="float-label">Chat</span>
   </button>
 </div>
@@ -56,8 +103,8 @@
 </div>
 
 <!-- NAVBAR -->
-<nav class="nav" id="mainNav">
-  <a href="#" onclick="nav('home');return false;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReu5MboTl1KCxufaP96ZdvmVBWXvOjlcoVmg&s" class="logo-img" alt="Logo"></a>
+<nav class="nav" id="mainNav" aria-label="Main Navigation">
+  <a href="#" onclick="nav('home');return false;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReu5MboTl1KCxufaP96ZdvmVBWXvOjlcoVmg&s" class="logo-img" alt="Hot N Tasty Roll Logo"></a>
   
   <div class="nav-center-pill">
     <div class="nav-links-group">
@@ -74,7 +121,7 @@
     <button class="btn-login" id="openModalBtn">Login <i class="fas fa-arrow-right"></i></button>
 
     <div class="profile-btn-wrap" id="profileWrap" style="display:none">
-      <button class="profile-btn" id="profileBtn" onclick="toggleProfileDropdown()">
+      <button class="profile-btn" id="profileBtn" onclick="toggleProfileDropdown()" aria-label="Profile menu">
         <span id="profileInitial">U</span>
       </button>
       <div class="profile-dropdown" id="profileDropdown">
@@ -102,7 +149,7 @@
       </div>
     </div>
 
-    <button class="ham-btn" id="hamBtn">
+    <button class="ham-btn" id="hamBtn" aria-label="Open menu">
       <span class="ham-line"></span>
       <span class="ham-line"></span>
       <span class="ham-line"></span>
@@ -121,13 +168,13 @@
 
   <div class="sidebar-header">
     <div class="sidebar-brand">
-      <div class="sidebar-brand-icon"><i class="fas fa-utensils"></i></div>
+      <div class="sidebar-brand-icon"><i class="fas fa-utensils" aria-hidden="true"></i></div>
       <div>
         <div class="sidebar-brand-name">Hot N Tasty</div>
         <div class="sidebar-brand-sub">Premium Rolls & More</div>
       </div>
     </div>
-    <button class="close-sidebar" id="closeSidebarBtn">
+    <button class="close-sidebar" id="closeSidebarBtn" aria-label="Close sidebar">
       <i class="fas fa-times"></i>
     </button>
   </div>
@@ -147,51 +194,49 @@
       <div class="sidebar-link-arrow"><i class="fas fa-chevron-right"></i></div>
     </a>
     
-    <!-- MENU WITH DROPDOWN -->
- <!-- MENU WITH DROPDOWN -->
-<div class="sidebar-link-dropdown">
-  <a class="sidebar-link">  <!-- REMOVE data-nav="menu" from here -->
-    <div class="sidebar-link-icon"><i class="fas fa-bowl-food"></i></div>
-    <span class="sidebar-link-text">Our Menu</span>
-    <div class="sidebar-link-arrow dropdown-toggle"><i class="fas fa-chevron-down"></i></div>
-  </a>
-  <div class="sidebar-dropdown-menu">
-    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('SHAPATAR SPECIAL JUMBO ROLLS'); return false;">
-      <i class="fas fa-circle"></i> Shapatar Jumbo Rolls
-    </a>
-    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('CHICKEN ROLLS'); return false;">
-      <i class="fas fa-circle"></i> Chicken Rolls
-    </a>
-    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('CHICKEN MALAI ROLLS'); return false;">
-      <i class="fas fa-circle"></i> Malai Rolls
-    </a>
-    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('BEEF BOTI ROLLS'); return false;">
-      <i class="fas fa-circle"></i> Beef Boti Rolls
-    </a>
-    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('BEEF KABAB ROLLS'); return false;">
-      <i class="fas fa-circle"></i> Beef Kabab Rolls
-    </a>
-    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('BURGERS'); return false;">
-      <i class="fas fa-circle"></i> Burgers
-    </a>
-    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('ZINGER BURGER'); return false;">
-      <i class="fas fa-circle"></i> Zinger Burgers
-    </a>
-    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('PIZZA'); return false;">
-      <i class="fas fa-circle"></i> Pizza
-    </a>
-    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('BAR B.Q'); return false;">
-      <i class="fas fa-circle"></i> BBQ
-    </a>
-    <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('CHINESE'); return false;">
-      <i class="fas fa-circle"></i> Chinese
-    </a>
-    <div class="sidebar-dropdown-divider"></div>
-    <a href="#" class="sidebar-dropdown-item view-all" onclick="nav('menu'); return false;">
-      <i class="fas fa-th-large"></i> View Full Menu
-    </a>
-  </div>
-</div>
+    <div class="sidebar-link-dropdown">
+      <a class="sidebar-link">
+        <div class="sidebar-link-icon"><i class="fas fa-bowl-food"></i></div>
+        <span class="sidebar-link-text">Our Menu</span>
+        <div class="sidebar-link-arrow dropdown-toggle"><i class="fas fa-chevron-down"></i></div>
+      </a>
+      <div class="sidebar-dropdown-menu">
+        <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('SHAPATAR SPECIAL JUMBO ROLLS'); return false;">
+          <i class="fas fa-circle"></i> Shapatar Jumbo Rolls
+        </a>
+        <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('CHICKEN ROLLS'); return false;">
+          <i class="fas fa-circle"></i> Chicken Rolls
+        </a>
+        <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('CHICKEN MALAI ROLLS'); return false;">
+          <i class="fas fa-circle"></i> Malai Rolls
+        </a>
+        <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('BEEF BOTI ROLLS'); return false;">
+          <i class="fas fa-circle"></i> Beef Boti Rolls
+        </a>
+        <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('BEEF KABAB ROLLS'); return false;">
+          <i class="fas fa-circle"></i> Beef Kabab Rolls
+        </a>
+        <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('BURGERS'); return false;">
+          <i class="fas fa-circle"></i> Burgers
+        </a>
+        <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('ZINGER BURGER'); return false;">
+          <i class="fas fa-circle"></i> Zinger Burgers
+        </a>
+        <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('PIZZA'); return false;">
+          <i class="fas fa-circle"></i> Pizza
+        </a>
+        <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('BAR B.Q'); return false;">
+          <i class="fas fa-circle"></i> BBQ
+        </a>
+        <a href="#" class="sidebar-dropdown-item" onclick="filterByCategory('CHINESE'); return false;">
+          <i class="fas fa-circle"></i> Chinese
+        </a>
+        <div class="sidebar-dropdown-divider"></div>
+        <a href="#" class="sidebar-dropdown-item view-all" onclick="nav('menu'); return false;">
+          <i class="fas fa-th-large"></i> View Full Menu
+        </a>
+      </div>
+    </div>
     
     <a data-nav="deals" class="sidebar-link">
       <div class="sidebar-link-icon"><i class="fas fa-fire-flame-curved"></i></div>
@@ -238,9 +283,9 @@
         <span>Mon–Sun: 11am–11pm</span>
       </div>
       <div class="sidebar-social">
-        <a href="#" class="sidebar-social-btn"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="sidebar-social-btn"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="sidebar-social-btn"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="sidebar-social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="sidebar-social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="sidebar-social-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
   </div>
@@ -305,7 +350,9 @@
           <div class="image-glow"></div>
           <div class="about-img-stack">
             <div class="about-img-main">
-              <div class="circle-rotating"><img id="rotatingImg" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format" alt="Restaurant"></div>
+              <div class="circle-rotating">
+                <img id="rotatingImg" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format" alt="Hot N Tasty Roll restaurant interior in Karachi">
+              </div>
             </div>
             <div class="about-img-badge-card">
               <div class="about-badge-card-icon"><i class="fas fa-fire"></i></div>
@@ -333,34 +380,34 @@
       </div>
       <div class="testimonials-grid" id="testimonialsGrid"></div>
     </section>
- <!-- NEWSLETTER SECTION - With Formspree Integration -->
-<section class="newsletter-section reveal">
-  <div class="newsletter-card">
-    <div class="newsletter-left">
-      <h3>Get <span style="color:var(--red)">Hot & Tasty</span> Updates</h3>
-      <p>Subscribe to receive exclusive deals, new menu alerts, and special offers every week.</p>
-      <span class="highlight"><i class="fas fa-fire"></i> 20% OFF on first order for subscribers!</span>
-    </div>
-    <div class="newsletter-right">
-      <form id="subscribeForm" action="https://formspree.io/f/mnjlloaj" method="POST">
-        <div class="form-row">
-          <div class="form-group">
-            <input type="text" name="name" id="subName" placeholder="Full Name" required>
-          </div>
-          <div class="form-group">
-            <input type="tel" name="phone" id="subPhone" placeholder="Phone Number">
-          </div>
+
+    <section class="newsletter-section reveal">
+      <div class="newsletter-card">
+        <div class="newsletter-left">
+          <h3>Get <span style="color:var(--red)">Hot & Tasty</span> Updates</h3>
+          <p>Subscribe to receive exclusive deals, new menu alerts, and special offers every week.</p>
+          <span class="highlight"><i class="fas fa-fire"></i> 20% OFF on first order for subscribers!</span>
         </div>
-        <div class="form-group" style="margin-bottom:16px">
-          <input type="email" name="email" id="subEmail" placeholder="Email Address" required>
+        <div class="newsletter-right">
+          <form id="subscribeForm" action="https://formspree.io/f/mnjlloaj" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" name="name" id="subName" placeholder="Full Name" required>
+              </div>
+              <div class="form-group">
+                <input type="tel" name="phone" id="subPhone" placeholder="Phone Number">
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom:16px">
+              <input type="email" name="email" id="subEmail" placeholder="Email Address" required>
+            </div>
+            <input type="hidden" name="_subject" value="New Newsletter Subscription">
+            <input type="hidden" name="_replyto" id="replytoEmail">
+            <button type="submit" class="subscribe-btn"><i class="fas fa-paper-plane"></i> Subscribe Now</button>
+          </form>
         </div>
-        <input type="hidden" name="_subject" value="New Newsletter Subscription">
-        <input type="hidden" name="_replyto" id="replytoEmail">
-        <button type="submit" class="subscribe-btn"><i class="fas fa-paper-plane"></i> Subscribe Now</button>
-      </form>
-    </div>
-  </div>
-</section>
+      </div>
+    </section>
   </div>
 
   <!-- ABOUT PAGE -->
@@ -382,13 +429,13 @@
         <div class="about-story-grid">
           <div class="about-story-visual">
             <div class="about-story-img-wrap">
-              <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1974&auto=format" alt="Our Kitchen" class="about-story-img">
+              <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1974&auto=format" alt="Hot N Tasty Roll kitchen in Karachi" class="about-story-img">
               <div class="about-story-img-overlay">
                 <div class="about-story-img-tag">Est. 2020</div>
               </div>
             </div>
             <div class="about-story-img-secondary-wrap">
-              <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format" alt="Our Food" class="about-story-img-secondary">
+              <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format" alt="Delicious food at Hot N Tasty Roll" class="about-story-img-secondary">
             </div>
           </div>
           <div class="about-story-text">
@@ -503,10 +550,10 @@
       <h2>Hot N <span>Tasty Roll</span></h2>
       <p>Experience the finest culinary journey with authentic flavors, premium ingredients, and unforgettable taste.</p>
       <div class="social-links">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
       </div>
     </div>
     <div class="footer-col">
@@ -591,9 +638,9 @@
   </div>
 </div>
 
-<script src="/assets.js"></script>
-<script src="/chatbotdata.js"></script>
-<script src="/chatbot.js"></script>
-<script type="module" src="/script.js"></script>
+<script src="assets.js"></script>
+<script src="chatbotdata.js"></script>
+<script src="chatbot.js"></script>
+<script type="module" src="script.js"></script>
 </body>
 </html>
