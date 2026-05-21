@@ -1,19 +1,34 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "server.js",
-      "use": "@vercel/node"
+  "functions": {
+    "server.js": {
+      "runtime": "nodejs20.x"
     }
-  ],
+  },
   "routes": [
     {
       "src": "/api/(.*)",
       "dest": "/server.js"
     },
     {
-      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|json|html))",
-      "dest": "/$1"
+      "src": "/style.css",
+      "dest": "/style.css"
+    },
+    {
+      "src": "/script.js",
+      "dest": "/script.js"
+    },
+    {
+      "src": "/assets.js",
+      "dest": "/assets.js"
+    },
+    {
+      "src": "/chatbot-data.js",
+      "dest": "/chatbot-data.js"
+    },
+    {
+      "src": "/chatbot.js",
+      "dest": "/chatbot.js"
     },
     {
       "src": "/(.*)",
