@@ -12,6 +12,10 @@
     {
       "src": "*.js",
       "use": "@vercel/static"
+    },
+    {
+      "src": "*.html",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -38,6 +42,10 @@
     {
       "src": "/chatbot.js",
       "dest": "/chatbot.js"
+    },
+    {
+      "src": "/google7606eed473cdefd6.html",
+      "dest": "/google7606eed473cdefd6.html"
     },
     {
       "src": "/(.*)",
