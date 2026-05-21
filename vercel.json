@@ -16,6 +16,10 @@
     {
       "src": "*.html",
       "use": "@vercel/static"
+    },
+    {
+      "src": "*.xml",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -46,6 +50,10 @@
     {
       "src": "/google7606eed473cdefd6.html",
       "dest": "/google7606eed473cdefd6.html"
+    },
+    {
+      "src": "/sitemap.xml",
+      "dest": "/sitemap.xml"
     },
     {
       "src": "/(.*)",
