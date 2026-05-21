@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static('.'));
+app.use(express.static(path.join(__dirname)));  // FIXED: was express.static('.')
 
 // Initialize Supabase
 const supabase = createClient(
