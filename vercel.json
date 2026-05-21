@@ -32,8 +32,8 @@
       "dest": "/assets.js"
     },
     {
-      "src": "/chatbot-data.js",
-      "dest": "/chatbot-data.js"
+      "src": "/chatbotdata.js",
+      "dest": "/chatbodata.js"
     },
     {
       "src": "/chatbot.js",
