@@ -1,63 +1,23 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "server.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "*.css",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.js",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.xml",
-      "use": "@vercel/static"
-    }
+    { "src": "server.js", "use": "@vercel/node" },
+    { "src": "*.css", "use": "@vercel/static" },
+    { "src": "*.js", "use": "@vercel/static" },
+    { "src": "*.html", "use": "@vercel/static" },
+    { "src": "*.xml", "use": "@vercel/static" },
+    { "src": "*.txt", "use": "@vercel/static" }
   ],
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "server.js"
-    },
-    {
-      "src": "/style.css",
-      "dest": "/style.css"
-    },
-    {
-      "src": "/script.js",
-      "dest": "/script.js"
-    },
-    {
-      "src": "/assets.js",
-      "dest": "/assets.js"
-    },
-    {
-      "src": "/chatbotdata.js",
-      "dest": "/chatbotdata.js"
-    },
-    {
-      "src": "/chatbot.js",
-      "dest": "/chatbot.js"
-    },
-    {
-      "src": "/google7606eed473cdefd6.html",
-      "dest": "/google7606eed473cdefd6.html"
-    },
-    {
-      "src": "/sitemap.xml",
-      "dest": "/sitemap.xml"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "server.js"
-    }
+    { "src": "/api/(.*)", "dest": "server.js" },
+    { "src": "/style.css", "dest": "/style.css" },
+    { "src": "/script.js", "dest": "/script.js" },
+    { "src": "/assets.js", "dest": "/assets.js" },
+    { "src": "/chatbotdata.js", "dest": "/chatbotdata.js" },
+    { "src": "/chatbot.js", "dest": "/chatbot.js" },
+    { "src": "/google7606eed473cdefd6.html", "dest": "/google7606eed473cdefd6.html" },
+    { "src": "/sitemap.xml", "dest": "/sitemap.xml" },
+    { "src": "/robots.txt", "dest": "/robots.txt" },
+    { "src": "/(.*)", "dest": "server.js" }
   ]
 }
