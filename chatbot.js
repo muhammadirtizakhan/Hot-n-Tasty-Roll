@@ -7,27 +7,8 @@
 // ================================================================
 // GROQ API CONFIGURATION
 // ================================================================
-// Get your FREE API key from: https://console.groq.com
-// Set as environment variable: GROQ_API_KEY (in Vercel/Netlify/.env)
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
-
-// Get API key from environment (Vercel serverless) or window
 let GROQ_API_KEY = '';
-
-// Try to get from process.env (Node.js server)
-if (typeof process !== 'undefined' && process.env && process.env.GROQ_API_KEY) {
-    GROQ_API_KEY = process.env.GROQ_API_KEY;
-}
-// Try to get from window (browser fallback)
-else if (typeof window !== 'undefined' && window.GROQ_API_KEY) {
-    GROQ_API_KEY = window.GROQ_API_KEY;
-}
-
-// Check if API key is configured
-if (!GROQ_API_KEY) {
-    console.warn('⚠️ GROQ API key not configured. Set GROQ_API_KEY in environment variables.');
-    console.warn('Get a free key from: https://console.groq.com');
-}
 
 // ================================================================
 // CHATBOT STATE
@@ -35,6 +16,25 @@ if (!GROQ_API_KEY) {
 let isProcessing = false;
 let conversationHistory = [];
 let KNOWLEDGE_BASE = null;
+
+// ================================================================
+// FETCH API KEY FROM SERVER (secure - key stays server-side)
+// ================================================================
+async function loadApiKey() {
+    try {
+        const res = await fetch('/api/config');
+        const data = await res.json();
+        if (data.groqApiKey) {
+            GROQ_API_KEY = data.groqApiKey;
+            console.log('✅ GROQ API key loaded from server');
+        } else {
+            console.warn('⚠️ GROQ API key not configured. Set GROQ_API_KEY in Vercel Environment Variables.');
+            console.warn('Get a free key from: https://console.groq.com');
+        }
+    } catch (e) {
+        console.warn('⚠️ Could not load API key from server:', e);
+    }
+}
 
 // ================================================================
 // LOAD TRAINING DATA
@@ -155,7 +155,6 @@ async function getAIResponse(userMessage) {
     }
     
     try {
-        // Prepare knowledge base summary for API
         const menuSummary = Object.keys(KNOWLEDGE_BASE?.menu || {}).slice(0, 10).join(', ');
         const dealsSummary = KNOWLEDGE_BASE?.deals?.map(d => `${d.name}: Rs.${d.price}`).join(', ') || '';
         const contactInfo = `${KNOWLEDGE_BASE?.contact?.phone_numbers?.[0]?.number || '0318-2370631'}, WhatsApp: ${KNOWLEDGE_BASE?.contact?.whatsapp?.number || '0341-3139107'}`;
@@ -179,7 +178,6 @@ RULES:
 
 User question: ${userMessage}`;
 
-        // Add to conversation history
         conversationHistory.push({ role: "user", content: userMessage });
         if (conversationHistory.length > 10) conversationHistory = conversationHistory.slice(-10);
         
@@ -256,4 +254,9 @@ window.searchInKnowledgeBase = searchInKnowledgeBase;
 window.getChatbotGreeting = getChatbotGreeting;
 window.sendChatbotMessage = sendChatbotMessage;
 
-console.log('🤖 Chatbot AI module loaded successfully!');
+// ================================================================
+// INIT - Load API key from server then start
+// ================================================================
+loadApiKey().then(() => {
+    console.log('🤖 Chatbot AI module loaded successfully!');
+});
