@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname)));  // FIXED: was express.static('.')
+app.use(express.static(path.join(__dirname)));
 
 // Initialize Supabase
 const supabase = createClient(
@@ -32,6 +32,15 @@ app.get('/', (req, res) => {
 // ================================================================
 app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', message: 'Server running' });
+});
+
+// ================================================================
+// CONFIG - Expose safe env vars to frontend
+// ================================================================
+app.get('/api/config', (req, res) => {
+    res.json({
+        groqApiKey: process.env.GROQ_API_KEY || ''
+    });
 });
 
 // ================================================================
@@ -127,16 +136,12 @@ app.post('/api/auth/login', async (req, res) => {
 app.get('/api/favorites/:userId', async (req, res) => {
     try {
         const { userId } = req.params;
-        
         const { data: favorites, error } = await supabase
             .from('food_favorites')
             .select('*')
             .eq('user_id', userId);
-        
         if (error) throw error;
-        
         res.json({ success: true, favorites: favorites || [] });
-        
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch favorites' });
     }
@@ -145,26 +150,14 @@ app.get('/api/favorites/:userId', async (req, res) => {
 app.post('/api/favorites', async (req, res) => {
     try {
         const { userId, itemId, itemName, itemCategory, itemPrice, itemImage } = req.body;
-        
         if (!userId || !itemId) {
             return res.status(400).json({ error: 'Missing required fields' });
         }
-        
         const { error } = await supabase
             .from('food_favorites')
-            .insert([{
-                user_id: userId,
-                item_id: itemId,
-                item_name: itemName,
-                item_category: itemCategory,
-                item_price: itemPrice,
-                item_image: itemImage
-            }]);
-        
+            .insert([{ user_id: userId, item_id: itemId, item_name: itemName, item_category: itemCategory, item_price: itemPrice, item_image: itemImage }]);
         if (error) throw error;
-        
         res.json({ success: true, message: 'Added to favorites' });
-        
     } catch (error) {
         res.status(500).json({ error: 'Failed to add to favorites' });
     }
@@ -173,17 +166,13 @@ app.post('/api/favorites', async (req, res) => {
 app.delete('/api/favorites/:userId/:itemId', async (req, res) => {
     try {
         const { userId, itemId } = req.params;
-        
         const { error } = await supabase
             .from('food_favorites')
             .delete()
             .eq('user_id', userId)
             .eq('item_id', itemId);
-        
         if (error) throw error;
-        
         res.json({ success: true, message: 'Removed from favorites' });
-        
     } catch (error) {
         res.status(500).json({ error: 'Failed to remove from favorites' });
     }
@@ -195,16 +184,12 @@ app.delete('/api/favorites/:userId/:itemId', async (req, res) => {
 app.get('/api/collections/:userId', async (req, res) => {
     try {
         const { userId } = req.params;
-        
         const { data: collections, error } = await supabase
             .from('food_collections')
             .select('*')
             .eq('user_id', userId);
-        
         if (error) throw error;
-        
         res.json({ success: true, collections: collections || [] });
-        
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch collections' });
     }
@@ -213,27 +198,14 @@ app.get('/api/collections/:userId', async (req, res) => {
 app.post('/api/collections', async (req, res) => {
     try {
         const { userId, itemId, itemName, itemCategory, itemPrice, itemImage, note } = req.body;
-        
         if (!userId || !itemId) {
             return res.status(400).json({ error: 'Missing required fields' });
         }
-        
         const { error } = await supabase
             .from('food_collections')
-            .insert([{
-                user_id: userId,
-                item_id: itemId,
-                item_name: itemName,
-                item_category: itemCategory,
-                item_price: itemPrice,
-                item_image: itemImage,
-                note: note || null
-            }]);
-        
+            .insert([{ user_id: userId, item_id: itemId, item_name: itemName, item_category: itemCategory, item_price: itemPrice, item_image: itemImage, note: note || null }]);
         if (error) throw error;
-        
         res.json({ success: true, message: 'Added to collection' });
-        
     } catch (error) {
         res.status(500).json({ error: 'Failed to add to collection' });
     }
@@ -242,17 +214,13 @@ app.post('/api/collections', async (req, res) => {
 app.delete('/api/collections/:userId/:itemId', async (req, res) => {
     try {
         const { userId, itemId } = req.params;
-        
         const { error } = await supabase
             .from('food_collections')
             .delete()
             .eq('user_id', userId)
             .eq('item_id', itemId);
-        
         if (error) throw error;
-        
         res.json({ success: true, message: 'Removed from collection' });
-        
     } catch (error) {
         res.status(500).json({ error: 'Failed to remove from collection' });
     }
