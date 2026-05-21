@@ -4,6 +4,10 @@
     {
       "src": "server.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "*.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
@@ -12,12 +16,12 @@
       "dest": "/server.js"
     },
     {
+      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|json))",
+      "dest": "/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
-  ],
-  "env": {
-    "SUPABASE_URL": "https://prhehrktaqiteowprqcx.supabase.co",
-    "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InByaGVocmt0YXFpdGVvd3BycWN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyNzI2NTcsImV4cCI6MjA5Mzg0ODY1N30.BXKPOhTucbrsIWD877pLYSOqpsyCT3CR7Ah2blcJa4U"
-  }
+  ]
 }
