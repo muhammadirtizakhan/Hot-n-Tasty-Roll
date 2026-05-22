@@ -1,7 +1,6 @@
-/* ================================================================
-   HOT N TASTY ROLL — Main Script (COMPLETE & FIXED)
-   Works with Supabase Database (No localStorage for fav/collection)
-================================================================ */
+// ================================================================
+// HOT N TASTY ROLL — Main Script (UPDATED with Category Heading)
+// ================================================================
 
 // ================================================================
 // API CONFIGURATION
@@ -31,10 +30,8 @@ function showToast(type = 'info', message = '', { title, duration = 4000 } = {})
   if (!container) return;
   const t = document.createElement('div');
   t.className = `toast toast-${type}`;
-
   const resolvedTitle = title || TOAST_TITLES[type];
   const durationSec = duration / 1000;
-
   t.innerHTML = `
     <div class="toast-icon-wrap"><i class="fas ${TOAST_ICONS[type]}"></i></div>
     <div class="toast-body">
@@ -44,14 +41,10 @@ function showToast(type = 'info', message = '', { title, duration = 4000 } = {})
     <button class="toast-close" aria-label="Close"><i class="fas fa-times"></i></button>
     <div class="toast-progress" style="animation-duration: ${durationSec}s"></div>
   `;
-
   container.appendChild(t);
-
   t.querySelector('.toast-close').addEventListener('click', () => dismissToast(t));
-
   const timer = setTimeout(() => dismissToast(t), duration);
   t._timer = timer;
-
   t.addEventListener('mouseenter', () => {
     clearTimeout(t._timer);
     t.querySelector('.toast-progress').style.animationPlayState = 'paused';
@@ -60,7 +53,6 @@ function showToast(type = 'info', message = '', { title, duration = 4000 } = {})
     t.querySelector('.toast-progress').style.animationPlayState = 'running';
     t._timer = setTimeout(() => dismissToast(t), 1500);
   });
-
   return t;
 }
 
@@ -239,26 +231,21 @@ let activeCategory = 'All';
 let currentUser = null;
 const DEFAULT_IMAGE_URL = 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=400&fit=crop';
 
-// ================================================================
-// HELPER FUNCTIONS
-// ================================================================
 function getCurrentUserId() {
     return currentUser?.id || null;
 }
 
 // ================================================================
-// FAVORITES API (Supabase)
+// FAVORITES API
 // ================================================================
 async function fetchFavoritesFromAPI() {
     const userId = getCurrentUserId();
     if (!userId) return [];
-    
     try {
         const response = await fetch(`${API_BASE_URL}/favorites/${userId}`);
         const data = await response.json();
         return data.favorites || [];
     } catch (error) {
-        console.error('Fetch favorites error:', error);
         return [];
     }
 }
@@ -269,7 +256,6 @@ async function addToFavoritesAPI(item) {
         toast.warning('Please login to add favorites');
         return false;
     }
-    
     try {
         const response = await fetch(`${API_BASE_URL}/favorites`, {
             method: 'POST',
@@ -283,7 +269,6 @@ async function addToFavoritesAPI(item) {
                 itemImage: item.img
             })
         });
-        
         const data = await response.json();
         if (data.success) {
             toast.success(`Added "${item.name}" to favorites`);
@@ -299,12 +284,10 @@ async function addToFavoritesAPI(item) {
 async function removeFromFavoritesAPI(itemId) {
     const userId = getCurrentUserId();
     if (!userId) return false;
-    
     try {
         const response = await fetch(`${API_BASE_URL}/favorites/${userId}/${itemId}`, {
             method: 'DELETE'
         });
-        
         const data = await response.json();
         if (data.success) {
             toast.info('Removed from favorites');
@@ -318,18 +301,16 @@ async function removeFromFavoritesAPI(itemId) {
 }
 
 // ================================================================
-// COLLECTIONS API (Supabase)
+// COLLECTIONS API
 // ================================================================
 async function fetchCollectionsFromAPI() {
     const userId = getCurrentUserId();
     if (!userId) return [];
-    
     try {
         const response = await fetch(`${API_BASE_URL}/collections/${userId}`);
         const data = await response.json();
         return data.collections || [];
     } catch (error) {
-        console.error('Fetch collections error:', error);
         return [];
     }
 }
@@ -340,7 +321,6 @@ async function addToCollectionAPI(item, note = '') {
         toast.warning('Please login to save to collection');
         return false;
     }
-    
     try {
         const response = await fetch(`${API_BASE_URL}/collections`, {
             method: 'POST',
@@ -355,7 +335,6 @@ async function addToCollectionAPI(item, note = '') {
                 note: note
             })
         });
-        
         const data = await response.json();
         if (data.success) {
             toast.success(`Saved "${item.name}" to collection`);
@@ -371,12 +350,10 @@ async function addToCollectionAPI(item, note = '') {
 async function removeFromCollectionAPI(itemId) {
     const userId = getCurrentUserId();
     if (!userId) return false;
-    
     try {
         const response = await fetch(`${API_BASE_URL}/collections/${userId}/${itemId}`, {
             method: 'DELETE'
         });
-        
         const data = await response.json();
         if (data.success) {
             toast.info('Removed from collection');
@@ -390,21 +367,18 @@ async function removeFromCollectionAPI(itemId) {
 }
 
 // ================================================================
-// TOGGLE FUNCTIONS (Updated for API)
+// TOGGLE FUNCTIONS
 // ================================================================
 async function toggleFavorite(itemId) {
     const item = [...menuData, ...dealsData].find(i => i.id == itemId);
     if (!item) return;
-    
     const favorites = await fetchFavoritesFromAPI();
     const isFav = favorites.some(f => f.item_id == itemId);
-    
     if (isFav) {
         await removeFromFavoritesAPI(itemId);
     } else {
         await addToFavoritesAPI(item);
     }
-    
     refreshHearts();
     if (currentPage === 'favorites') renderFavorites();
     if (currentPage === 'collection') renderCollection();
@@ -413,16 +387,13 @@ async function toggleFavorite(itemId) {
 async function toggleCollection(itemId) {
     const item = [...menuData, ...dealsData].find(i => i.id == itemId);
     if (!item) return;
-    
     const collections = await fetchCollectionsFromAPI();
     const isCol = collections.some(c => c.item_id == itemId);
-    
     if (isCol) {
         await removeFromCollectionAPI(itemId);
     } else {
         await addToCollectionAPI(item);
     }
-    
     if (currentPage === 'collection') renderCollection();
 }
 
@@ -443,7 +414,6 @@ async function refreshHearts() {
 function buildCard(item, isDeals = false) {
   const fullStars = Math.floor(item.rating);
   const hasHalfStar = (item.rating - fullStars) >= 0.5;
-  
   let starsHtml = '';
   for (let i = 1; i <= 5; i++) {
     if (i <= fullStars) {
@@ -454,10 +424,8 @@ function buildCard(item, isDeals = false) {
       starsHtml += '<i class="far fa-star"></i>';
     }
   }
-
   let priceHtml = '';
   let itemsHtml = '';
-  
   if (isDeals) {
     priceHtml = `
       <div class="deal-discount">${item.discount || '20% OFF'}</div>
@@ -466,23 +434,13 @@ function buildCard(item, isDeals = false) {
         <span class="new-price">Rs. ${item.price}</span>
       </div>
     `;
-    
     if (item.items && Array.isArray(item.items) && item.items.length > 0) {
-      itemsHtml = `
-        <div class="deal-items-list">
-          <div class="deal-items-title">What's Included</div>
-          <ul class="deal-items-ul">
-            ${item.items.map(i => `<li>${i}</li>`).join('')}
-          </ul>
-        </div>
-      `;
+      itemsHtml = `<div class="deal-items-list"><div class="deal-items-title">What's Included</div><ul class="deal-items-ul">${item.items.map(i => `<li>${i}</li>`).join('')}</ul></div>`;
     }
   } else {
     priceHtml = `<div class="price-tag">Rs. ${item.price}</div>`;
   }
-
   const tagHtml = (!isDeals && item.tag) ? `<div class="dish-tag">${item.tag}</div>` : '';
-
   return `
     <div class="dish-card">
       <div class="heart-icon" data-id="${item.id}" onclick="toggleFavorite('${item.id}')">
@@ -526,16 +484,12 @@ function renderPopularDishes() {
 function renderTestimonials() {
   const grid = document.getElementById('testimonialsGrid');
   if (!grid) return;
-  
   if (typeof testimonials !== 'undefined' && testimonials && testimonials.length) {
     grid.innerHTML = testimonials.map(t => `
       <div class="testimonial-card">
         <div class="testimonial-author-photo">
           <img class="author-img" src="${t.avatar}" alt="${t.name}">
-          <div class="author-name-box">
-            <h4>${t.name}</h4>
-            <p>${t.role}</p>
-          </div>
+          <div class="author-name-box"><h4>${t.name}</h4><p>${t.role}</p></div>
         </div>
         <div class="testimonial-stars">${Array.from({length:t.stars}, () => '<i class="fas fa-star"></i>').join('')}</div>
         <div class="testimonial-divider"></div>
@@ -547,6 +501,9 @@ function renderTestimonials() {
   }
 }
 
+// ================================================================
+// UPDATED: ACTIVE CATEGORY HEADING (Mobile + Desktop)
+// ================================================================
 function renderActiveCategoryHeading() {
     const menuPage = document.getElementById('menuPage');
     if (!menuPage) return;
@@ -562,10 +519,14 @@ function renderActiveCategoryHeading() {
         }
     }
     
-    let displayName = activeCategory === 'All' ? 'All Items' : activeCategory;
+    let displayName = activeCategory === 'All' ? 'Our Signature Menu' : activeCategory;
     let itemCount = activeCategory === 'All' ? menuData.length : menuData.filter(i => i.category === activeCategory).length;
     
-    headingContainer.innerHTML = `<h2>${displayName}</h2><p>${itemCount} delicious items</p>`;
+    if (activeCategory === 'All') {
+        headingContainer.innerHTML = `<h2>Our Signature Menu</h2><p>Explore curated categories & premium delights (${itemCount} items)</p>`;
+    } else {
+        headingContainer.innerHTML = `<h2>${displayName}</h2><p>Explore our delicious ${displayName.toLowerCase()} collection (${itemCount} items)</p>`;
+    }
 }
 
 function renderCategorySlider() {
@@ -580,7 +541,19 @@ function renderCategorySlider() {
 function renderMenuItems() {
     const grid = document.getElementById('menuItemsGrid');
     if (!grid) return;
+    
+    // Update desktop page header
+    const pageHeader = document.querySelector('#menuPage .page-header');
+    if (pageHeader) {
+        if (activeCategory === 'All') {
+            pageHeader.innerHTML = '<h1>Our Signature Menu</h1><p>Explore curated categories & premium delights</p>';
+        } else {
+            pageHeader.innerHTML = `<h1>${activeCategory}</h1><p>Explore our delicious ${activeCategory.toLowerCase()} collection</p>`;
+        }
+    }
+    
     renderActiveCategoryHeading();
+    
     const filtered = activeCategory === 'All' ? menuData : menuData.filter(i => i.category === activeCategory);
     if (filtered.length === 0) {
         grid.innerHTML = `<div class="empty-state"><i class="fas fa-utensils"></i><h3>No items in "${activeCategory}"</h3><button onclick="filterByCategory('All')" style="margin-top:15px;padding:10px 25px;background:var(--red);border:none;border-radius:30px;color:white;cursor:pointer;">View All Items</button></div>`;
@@ -619,14 +592,11 @@ function renderDealsPage() {
 async function renderFavorites() {
     const grid = document.getElementById('favoritesGrid');
     if (!grid) return;
-    
     const favs = await fetchFavoritesFromAPI();
-    
     if (favs.length === 0) {
         grid.innerHTML = `<div class="empty-state"><i class="fas fa-heart"></i><h3>No favorites yet</h3><p>Login and click the heart icon to save your favorite dishes here.</p></div>`;
         return;
     }
-    
     grid.innerHTML = favs.map(item => buildCard({
         id: item.item_id,
         name: item.item_name,
@@ -637,21 +607,17 @@ async function renderFavorites() {
         rating: 4.5,
         reviews: 100
     })).join('');
-    
     refreshHearts();
 }
 
 async function renderCollection() {
     const grid = document.getElementById('collectionGrid');
     if (!grid) return;
-    
     const collections = await fetchCollectionsFromAPI();
-    
     if (collections.length === 0) {
         grid.innerHTML = `<div class="empty-state"><i class="fas fa-bookmark"></i><h3>Collection empty</h3><p>Login and save items to see them here.</p></div>`;
         return;
     }
-    
     grid.innerHTML = collections.map(item => buildCard({
         id: item.item_id,
         name: item.item_name,
@@ -662,7 +628,6 @@ async function renderCollection() {
         rating: 4.5,
         reviews: 100
     })).join('');
-    
     refreshHearts();
 }
 
@@ -681,7 +646,6 @@ window.addEventListener('DOMContentLoaded', () => {
                     } else if (typeof itemImages !== 'undefined' && itemImages[item.name]) {
                         itemImg = itemImages[item.name];
                     }
-                    
                     let itemDesc = 'Freshly prepared with premium ingredients';
                     let itemTag = 'Popular';
                     if (typeof getDescriptionForCategory === 'function') {
@@ -690,7 +654,6 @@ window.addEventListener('DOMContentLoaded', () => {
                         itemDesc = categoryInfo[category.category].desc;
                         itemTag = categoryInfo[category.category].tag;
                     }
-                    
                     menuData.push({
                         id: `menu_${category.category.replace(/\s/g, '_')}_${item.name.replace(/\s/g, '_')}`,
                         name: item.name,
@@ -715,7 +678,6 @@ window.addEventListener('DOMContentLoaded', () => {
             } else if (typeof dealImages !== 'undefined' && dealImages[deal.id]) {
                 dealImg = dealImages[deal.id];
             }
-            
             return {
                 id: deal.id,
                 name: deal.name,
@@ -738,7 +700,6 @@ window.addEventListener('DOMContentLoaded', () => {
     renderCollection();
     nav('home');
     
-    // Check for existing user session
     const savedUser = localStorage.getItem('hnt_user');
     if (savedUser) {
         try {
@@ -749,51 +710,38 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // ================================================================
-// NEWSLETTER WITH FORMSPREE
+// NEWSLETTER
 // ================================================================
 const subscribeForm = document.getElementById('subscribeForm');
-
 if (subscribeForm) {
     subscribeForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
         const name = document.getElementById('subName')?.value.trim();
         const email = document.getElementById('subEmail')?.value.trim();
         const phone = document.getElementById('subPhone')?.value.trim();
-        
         if (!name || !email) {
             toast.warning('Please fill in your name and email.');
             return;
         }
-        
         const submitBtn = subscribeForm.querySelector('.subscribe-btn');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Subscribing...';
         submitBtn.disabled = true;
-        
         try {
             const response = await fetch(`${API_BASE_URL}/subscribe`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, email, phone })
             });
-            
             const data = await response.json();
-            
             if (data.success) {
-                toast.success(`Welcome ${name}! Enjoy 20% off on your first order.`, { 
-                    title: 'Subscribed!', 
-                    duration: 5000 
-                });
+                toast.success(`Welcome ${name}! Enjoy 20% off on your first order.`, { title: 'Subscribed!', duration: 5000 });
                 subscribeForm.reset();
             } else {
                 throw new Error('Subscription failed');
             }
         } catch (error) {
-            console.error('Form error:', error);
-            toast.error('Something went wrong. Please try again or contact us directly at 0318-2370631.', {
-                title: 'Subscription Failed'
-            });
+            toast.error('Something went wrong. Please try again.', { title: 'Subscription Failed' });
         } finally {
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
@@ -846,15 +794,12 @@ function updateUIForLoggedInUser() {
     const profileInitialEl = document.getElementById('profileInitial');
     const dropdownNameEl = document.getElementById('dropdownName');
     const dropdownEmailEl = document.getElementById('dropdownEmail');
-    
     if (openModalBtnEl) openModalBtnEl.style.display = 'none';
     if (profileWrapEl) profileWrapEl.style.display = 'flex';
     if (profileInitialEl && currentUser) profileInitialEl.textContent = currentUser.name[0].toUpperCase();
     if (dropdownNameEl && currentUser) dropdownNameEl.textContent = currentUser.name;
     if (dropdownEmailEl && currentUser) dropdownEmailEl.textContent = currentUser.email;
-    
     if (authModal) authModal.classList.remove('open');
-    
     renderFavorites();
     renderCollection();
     refreshHearts();
@@ -863,10 +808,8 @@ function updateUIForLoggedInUser() {
 function updateUIForLoggedOutUser() {
     const openModalBtnEl = document.getElementById('openModalBtn');
     const profileWrapEl = document.getElementById('profileWrap');
-    
     if (openModalBtnEl) openModalBtnEl.style.display = 'flex';
     if (profileWrapEl) profileWrapEl.style.display = 'none';
-    
     renderFavorites();
     renderCollection();
     refreshHearts();
@@ -875,21 +818,17 @@ function updateUIForLoggedOutUser() {
 async function doLogin() {
     const email = document.getElementById('loginEmail')?.value.trim();
     const password = document.getElementById('loginPass')?.value.trim();
-    
     if (!email || !password) {
         toast.warning('Please enter your email and password.');
         return;
     }
-    
     try {
         const response = await fetch(`${API_BASE_URL}/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
         });
-        
         const data = await response.json();
-        
         if (data.success) {
             currentUser = data.user;
             localStorage.setItem('hnt_user', JSON.stringify(currentUser));
@@ -907,27 +846,21 @@ async function doRegister() {
     const name = document.getElementById('regName')?.value.trim();
     const email = document.getElementById('regEmail')?.value.trim();
     const password = document.getElementById('regPass')?.value.trim();
-    const phone = document.getElementById('regPhone')?.value.trim();
-    
     if (!name || !email || !password) {
         toast.warning('Please fill all registration fields.');
         return;
     }
-    
     if (password.length < 6) {
         toast.warning('Password must be at least 6 characters.');
         return;
     }
-    
     try {
         const response = await fetch(`${API_BASE_URL}/auth/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, password, phone })
+            body: JSON.stringify({ name, email, password, phone: '' })
         });
-        
         const data = await response.json();
-        
         if (data.success) {
             currentUser = data.user;
             localStorage.setItem('hnt_user', JSON.stringify(currentUser));
@@ -1082,12 +1015,10 @@ async function sendChatMessageHandler() {
     if (!chatInputEl) return;
     const message = chatInputEl.value.trim();
     if (!message || isChatSending) return;
-    
     chatInputEl.value = '';
     appendChatMessage(message, 'user');
     showChatTyping();
     isChatSending = true;
-    
     try {
         let reply = getSmartChatReply(message);
         hideChatTyping();
@@ -1114,10 +1045,8 @@ function setupChatbot() {
     if (closeChatBtn) {
         closeChatBtn.addEventListener('click', () => chatbotModal?.classList.remove('open'));
     }
-    
     chatInputEl = document.getElementById('chatInput');
     sendChatBtnEl = document.getElementById('sendChatBtn');
-    
     if (sendChatBtnEl) {
         const newBtn = sendChatBtnEl.cloneNode(true);
         sendChatBtnEl.parentNode.replaceChild(newBtn, sendChatBtnEl);
@@ -1127,7 +1056,6 @@ function setupChatbot() {
             sendChatMessageHandler();
         });
     }
-    
     if (chatInputEl) {
         const newInput = chatInputEl.cloneNode(true);
         chatInputEl.parentNode.replaceChild(newInput, chatInputEl);
