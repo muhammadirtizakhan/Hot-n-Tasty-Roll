@@ -256,54 +256,324 @@ const menu = [
 const deals = [
   {
     id: 1,
-    name: "Family Deal 1",
-    price: 1200,
-    items: ["2 Chicken Rolls", "1 Zinger Burger", "2 Regular Fries", "2 Cold Drinks"]
+    name: "Deal 01",
+    price: 650,
+    items: [
+      "1 King Zinger Burger",
+      "1 Mayo Roll",
+      "Fries",
+      "Coleslaw"
+    ]
   },
   {
     id: 2,
-    name: "Family Deal 2",
-    price: 1500,
-    items: ["2 Beef Rolls", "1 Pizza", "1 Large Fries", "2 Cold Drinks"]
+    name: "Deal 02",
+    price: 710,
+    items: [
+      "1 Beef Burger",
+      "1 Ch Broast (Leg)",
+      "Fries",
+      "Coleslaw"
+    ]
   },
   {
     id: 3,
-    name: "BBQ Deal",
-    price: 1800,
-    items: ["Chicken Tikka", "Malai Boti", "2 Paratha", "Cold Drink"]
+    name: "Deal 03",
+    price: 660,
+    items: [
+      "1 Crispy Broast Leg (Qtr)",
+      "1 Chicken Garlic Roll",
+      "Fries",
+      "Coleslaw"
+    ]
   },
   {
     id: 4,
-    name: "Broast Deal",
-    price: 1400,
-    items: ["Full Broast", "Large Fries", "Coleslaw", "2 Cold Drinks"]
+    name: "Deal 04",
+    price: 800,
+    items: [
+      "1 Chicken Big Burger",
+      "1 Chicken Behari Tikka Leg",
+      "Fries",
+      "Coleslaw"
+    ]
   },
   {
     id: 5,
-    name: "Combo Deal 1",
-    price: 800,
-    items: ["Zinger Burger", "Regular Fries", "Cold Drink"]
+    name: "Deal 05",
+    price: 950,
+    items: [
+      "1 Mega Zinger Burger",
+      "1 Chicken Malai Mayo Roll",
+      "Fries",
+      "Coleslaw"
+    ]
   },
   {
     id: 6,
-    name: "Combo Deal 2",
-    price: 900,
-    items: ["Beef Burger", "Cheese Fries", "Cold Drink"]
+    name: "Deal 06",
+    price: 620,
+    items: [
+      "1 King Size Zinger Burger",
+      "1 Half Club Sandwich",
+      "Fries",
+      "Coleslaw"
+    ]
   },
   {
     id: 7,
-    name: "Roll Deal",
-    price: 600,
-    items: ["2 Chicken Rolls", "2 Cold Drinks"]
+    name: "Deal 07",
+    price: 700,
+    items: [
+      "1 Qtr. Broast Leg",
+      "1 Half Club Sandwich",
+      "Fries",
+      "Coleslaw"
+    ]
   },
   {
     id: 8,
-    name: "Chinese Deal",
-    price: 1000,
-    items: ["Chicken Fried Rice", "Chicken Chowmen", "2 Cold Drinks"]
+    name: "Deal 08",
+    price: 500,
+    items: [
+      "1 Beef Burger",
+      "1 Chicken Roll",
+      "Fries",
+      "Coleslaw"
+    ]
+  },
+  {
+    id: 9,
+    name: "Deal 09",
+    price: 580,
+    items: [
+      "1 Junior Zinger Burger",
+      "1 Ch Chatni Roll",
+      "Fries",
+      "Coleslaw"
+    ]
+  },
+  {
+    id: 10,
+    name: "Deal 10",
+    price: 850,
+    items: [
+      "1 King Size Zinger Burger",
+      "1 Qtr. Broast Leg",
+      "Fries",
+      "Coleslaw"
+    ]
+  },
+  {
+    id: 11,
+    name: "Deal 11",
+    price: 500,
+    items: [
+      "1 Chicken Burger",
+      "1 Beef Boti Roll",
+      "Fries",
+      "Coleslaw"
+    ]
+  },
+  {
+    id: 12,
+    name: "Deal 12",
+    price: 1900,
+    items: [
+      "4 Chicken Roll",
+      "3 Beef Roll",
+      "2 Mayo Roll"
+    ]
+  },
+  {
+    id: 13,
+    name: "Deal 13",
+    price: 840,
+    items: [
+      "1 Beef Boti Plate",
+      "1 Beef Roll",
+      "1 Small Paratha",
+      "Chatni Salad"
+    ]
+  },
+  {
+    id: 14,
+    name: "Deal 14",
+    price: 1060,
+    items: [
+      "1 Plate Beef Boti",
+      "1 Plate Beef Kabab",
+      "2 Small Paratha",
+      "Chatni Salad"
+    ]
+  },
+  {
+    id: 15,
+    name: "Deal 15",
+    price: 1330,
+    items: [
+      "2 Chicken Tikka Leg",
+      "2 Small Paratha",
+      "2 Ch Mayo Roll",
+      "Raita Salad"
+    ]
+  },
+  {
+    id: 16,
+    name: "Deal 16",
+    price: 610,
+    items: [
+      "1 Chicken Tikka (Leg)",
+      "1 Small Paratha",
+      "1 Beef Roll",
+      "Raita Salad"
+    ]
+  },
+  {
+    id: 17,
+    name: "Deal 17",
+    price: 1050,
+    items: [
+      "1 Plate Reshmi Kabab",
+      "1 Plate Malai Boti",
+      "2 Small Paratha",
+      "Chatni Raita"
+    ]
+  },
+  {
+    id: 18,
+    name: "Deal 18",
+    price: 730,
+    items: [
+      "1 Plate Chicken Boti",
+      "1 Ch Mayo Roll",
+      "1 Small Paratha",
+      "Salad Raita"
+    ]
+  },
+  {
+    id: 19,
+    name: "Deal 19",
+    price: 730,
+    items: [
+      "1 Plate Reshmi Kabab",
+      "1 Small Paratha",
+      "1 Mayo Roll",
+      "Raita Salad"
+    ]
+  },
+  {
+    id: 20,
+    name: "Deal 20",
+    price: 450,
+    items: [
+      "1 Small Pizza",
+      "1 Cold Drink 300ml"
+    ]
+  },
+  {
+    id: 21,
+    name: "Deal 21",
+    price: 830,
+    items: [
+      "1 Regular Pizza",
+      "1 Cold Drink 500ml"
+    ]
+  },
+  {
+    id: 22,
+    name: "Deal 22",
+    price: 1300,
+    items: [
+      "1 Large Pizza",
+      "1 Cold Drink 1.5 ltr"
+    ]
+  },
+  {
+    id: 23,
+    name: "Deal 23",
+    price: 1650,
+    items: [
+      "1 Jumbo Pizza",
+      "1 Cold Drink 1.5 ltr"
+    ]
+  },
+  {
+    id: 24,
+    name: "Deal 24",
+    price: 670,
+    items: [
+      "1 BBQ Sandwich",
+      "1 Chicken Juicy Roll",
+      "Fries",
+      "Coleslaw"
+    ]
+  },
+  {
+    id: 25,
+    name: "Deal 25",
+    price: 630,
+    items: [
+      "1 Club Sandwich",
+      "1 Mayo Roll",
+      "Fries",
+      "Coleslaw"
+    ]
+  },
+  {
+    id: 26,
+    name: "Deal 26",
+    price: 820,
+    items: [
+      "1 Club Sandwich",
+      "1 Zinger Burger",
+      "Fries",
+      "Coleslaw"
+    ]
+  },
+  {
+    id: 27,
+    name: "Family Deal 01 BBQ",
+    price: 2750,
+    items: [
+      "1 Malai Boti Plate",
+      "1 Beef Boti Plate",
+      "1 Reshmi Kabab Plate",
+      "1 Seekh Kabab Plate",
+      "1 Behari Tikka Plate",
+      "10 Small Paratha",
+      "1 Cold Drink 1.5 ltr"
+    ]
+  },
+  {
+    id: 28,
+    name: "Family Deal 02",
+    price: 2600,
+    items: [
+      "2 Zinger",
+      "2 Qtr Leg",
+      "2 Tikka Leg",
+      "2 Small Paratha",
+      "1 Cold Drink 1.5 ltr",
+      "Raita+Salad"
+    ]
+  },
+  {
+    id: 29,
+    name: "Special BBQ Platter",
+    price: 2350,
+    items: [
+      "1 Seekh Malai Boti",
+      "1 Seekh Makhmali Kabab",
+      "1 Seekh Reshmi Kabab",
+      "1 Seekh Beef Boti",
+      "1 Seekh Kabab",
+      "1 Tikka Leg Pcs",
+      "10 Small Paratha",
+      "1 Cold Drink 1.5 ltr"
+    ]
   }
 ];
-
 // Deal Images
 const dealImages = {
   1: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800&auto=format",
