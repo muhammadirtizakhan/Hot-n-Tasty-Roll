@@ -1,10 +1,7 @@
 // ================================================================
-// HOT N TASTY ROLL — Main Script (UPDATED with Category Heading)
+// HOT N TASTY ROLL — Main Script
 // ================================================================
 
-// ================================================================
-// API CONFIGURATION
-// ================================================================
 const API_BASE_URL = window.location.hostname === 'localhost' 
     ? 'http://localhost:3000/api'
     : '/api';
@@ -91,20 +88,16 @@ function nav(page) {
   PAGES[page].style.display = 'block';
   currentPage = page;
   window.scrollTo({ top: 0, behavior: 'smooth' });
-
   document.querySelectorAll('.nav-link').forEach(l => {
     l.classList.toggle('act', l.dataset.nav === page);
   });
-
   document.querySelectorAll('.sidebar-link').forEach(l => {
     l.classList.toggle('active-sidebar-link', l.dataset.nav === page);
   });
-
   if (page === 'menu')        renderMenuPage();
   if (page === 'deals')       renderDealsPage();
   if (page === 'favorites')   renderFavorites();
   if (page === 'collection')  renderCollection();
-
   closeSidebar();
 }
 
@@ -174,7 +167,7 @@ const sidebar = document.getElementById('sidebar');
 const sidebarOverlay = document.getElementById('sidebarOverlay');
 const closeSidebarBtn = document.getElementById('closeSidebarBtn');
 
-function openSidebar()  {
+function openSidebar() {
   if (sidebar) sidebar.classList.add('open');
   if (sidebarOverlay) sidebarOverlay.classList.add('open');
   if (hamBtn) hamBtn.classList.add('active');
@@ -195,7 +188,6 @@ if (hamBtn) {
 if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', closeSidebar);
 if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
 
-// SIDEBAR DROPDOWN TOGGLE
 document.querySelectorAll('.sidebar-link-dropdown').forEach(dropdown => {
   const link = dropdown.querySelector('.sidebar-link');
   if (link) {
@@ -245,59 +237,33 @@ async function fetchFavoritesFromAPI() {
         const response = await fetch(`${API_BASE_URL}/favorites/${userId}`);
         const data = await response.json();
         return data.favorites || [];
-    } catch (error) {
-        return [];
-    }
+    } catch (error) { return []; }
 }
 
 async function addToFavoritesAPI(item) {
     const userId = getCurrentUserId();
-    if (!userId) {
-        toast.warning('Please login to add favorites');
-        return false;
-    }
+    if (!userId) { toast.warning('Please login to add favorites'); return false; }
     try {
         const response = await fetch(`${API_BASE_URL}/favorites`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                userId: userId,
-                itemId: item.id,
-                itemName: item.name,
-                itemCategory: item.category,
-                itemPrice: item.price,
-                itemImage: item.img
-            })
+            body: JSON.stringify({ userId, itemId: item.id, itemName: item.name, itemCategory: item.category, itemPrice: item.price, itemImage: item.img })
         });
         const data = await response.json();
-        if (data.success) {
-            toast.success(`Added "${item.name}" to favorites`);
-            return true;
-        }
+        if (data.success) { toast.success(`Added "${item.name}" to favorites`); return true; }
         return false;
-    } catch (error) {
-        toast.error('Failed to add to favorites');
-        return false;
-    }
+    } catch (error) { toast.error('Failed to add to favorites'); return false; }
 }
 
 async function removeFromFavoritesAPI(itemId) {
     const userId = getCurrentUserId();
     if (!userId) return false;
     try {
-        const response = await fetch(`${API_BASE_URL}/favorites/${userId}/${itemId}`, {
-            method: 'DELETE'
-        });
+        const response = await fetch(`${API_BASE_URL}/favorites/${userId}/${itemId}`, { method: 'DELETE' });
         const data = await response.json();
-        if (data.success) {
-            toast.info('Removed from favorites');
-            return true;
-        }
+        if (data.success) { toast.info('Removed from favorites'); return true; }
         return false;
-    } catch (error) {
-        toast.error('Failed to remove from favorites');
-        return false;
-    }
+    } catch (error) { toast.error('Failed to remove from favorites'); return false; }
 }
 
 // ================================================================
@@ -310,60 +276,33 @@ async function fetchCollectionsFromAPI() {
         const response = await fetch(`${API_BASE_URL}/collections/${userId}`);
         const data = await response.json();
         return data.collections || [];
-    } catch (error) {
-        return [];
-    }
+    } catch (error) { return []; }
 }
 
 async function addToCollectionAPI(item, note = '') {
     const userId = getCurrentUserId();
-    if (!userId) {
-        toast.warning('Please login to save to collection');
-        return false;
-    }
+    if (!userId) { toast.warning('Please login to save to collection'); return false; }
     try {
         const response = await fetch(`${API_BASE_URL}/collections`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                userId: userId,
-                itemId: item.id,
-                itemName: item.name,
-                itemCategory: item.category,
-                itemPrice: item.price,
-                itemImage: item.img,
-                note: note
-            })
+            body: JSON.stringify({ userId, itemId: item.id, itemName: item.name, itemCategory: item.category, itemPrice: item.price, itemImage: item.img, note })
         });
         const data = await response.json();
-        if (data.success) {
-            toast.success(`Saved "${item.name}" to collection`);
-            return true;
-        }
+        if (data.success) { toast.success(`Saved "${item.name}" to collection`); return true; }
         return false;
-    } catch (error) {
-        toast.error('Failed to save to collection');
-        return false;
-    }
+    } catch (error) { toast.error('Failed to save to collection'); return false; }
 }
 
 async function removeFromCollectionAPI(itemId) {
     const userId = getCurrentUserId();
     if (!userId) return false;
     try {
-        const response = await fetch(`${API_BASE_URL}/collections/${userId}/${itemId}`, {
-            method: 'DELETE'
-        });
+        const response = await fetch(`${API_BASE_URL}/collections/${userId}/${itemId}`, { method: 'DELETE' });
         const data = await response.json();
-        if (data.success) {
-            toast.info('Removed from collection');
-            return true;
-        }
+        if (data.success) { toast.info('Removed from collection'); return true; }
         return false;
-    } catch (error) {
-        toast.error('Failed to remove from collection');
-        return false;
-    }
+    } catch (error) { toast.error('Failed to remove from collection'); return false; }
 }
 
 // ================================================================
@@ -374,11 +313,7 @@ async function toggleFavorite(itemId) {
     if (!item) return;
     const favorites = await fetchFavoritesFromAPI();
     const isFav = favorites.some(f => f.item_id == itemId);
-    if (isFav) {
-        await removeFromFavoritesAPI(itemId);
-    } else {
-        await addToFavoritesAPI(item);
-    }
+    if (isFav) { await removeFromFavoritesAPI(itemId); } else { await addToFavoritesAPI(item); }
     refreshHearts();
     if (currentPage === 'favorites') renderFavorites();
     if (currentPage === 'collection') renderCollection();
@@ -389,11 +324,7 @@ async function toggleCollection(itemId) {
     if (!item) return;
     const collections = await fetchCollectionsFromAPI();
     const isCol = collections.some(c => c.item_id == itemId);
-    if (isCol) {
-        await removeFromCollectionAPI(itemId);
-    } else {
-        await addToCollectionAPI(item);
-    }
+    if (isCol) { await removeFromCollectionAPI(itemId); } else { await addToCollectionAPI(item); }
     if (currentPage === 'collection') renderCollection();
 }
 
@@ -416,24 +347,14 @@ function buildCard(item, isDeals = false) {
   const hasHalfStar = (item.rating - fullStars) >= 0.5;
   let starsHtml = '';
   for (let i = 1; i <= 5; i++) {
-    if (i <= fullStars) {
-      starsHtml += '<i class="fas fa-star"></i>';
-    } else if (i === fullStars + 1 && hasHalfStar) {
-      starsHtml += '<i class="fas fa-star-half-alt"></i>';
-    } else {
-      starsHtml += '<i class="far fa-star"></i>';
-    }
+    if (i <= fullStars) starsHtml += '<i class="fas fa-star"></i>';
+    else if (i === fullStars + 1 && hasHalfStar) starsHtml += '<i class="fas fa-star-half-alt"></i>';
+    else starsHtml += '<i class="far fa-star"></i>';
   }
   let priceHtml = '';
   let itemsHtml = '';
   if (isDeals) {
-    priceHtml = `
-      <div class="deal-discount">${item.discount || '20% OFF'}</div>
-      <div class="price-row">
-        <span class="old-price">${item.oldPrice || 'Rs. 1500'}</span>
-        <span class="new-price">Rs. ${item.price}</span>
-      </div>
-    `;
+    priceHtml = `<div class="deal-discount">${item.discount || '20% OFF'}</div><div class="price-row"><span class="old-price">${item.oldPrice || 'Rs. 1500'}</span><span class="new-price">Rs. ${item.price}</span></div>`;
     if (item.items && Array.isArray(item.items) && item.items.length > 0) {
       itemsHtml = `<div class="deal-items-list"><div class="deal-items-title">What's Included</div><ul class="deal-items-ul">${item.items.map(i => `<li>${i}</li>`).join('')}</ul></div>`;
     }
@@ -443,9 +364,7 @@ function buildCard(item, isDeals = false) {
   const tagHtml = (!isDeals && item.tag) ? `<div class="dish-tag">${item.tag}</div>` : '';
   return `
     <div class="dish-card">
-      <div class="heart-icon" data-id="${item.id}" onclick="toggleFavorite('${item.id}')">
-        <i class="far fa-heart"></i>
-      </div>
+      <div class="heart-icon" data-id="${item.id}" onclick="toggleFavorite('${item.id}')"><i class="far fa-heart"></i></div>
       ${tagHtml}
       <div class="card-img-wrapper">
         <img class="food-img-round" src="${item.img || DEFAULT_IMAGE_URL}" alt="${item.name}" loading="lazy" onerror="this.src='${DEFAULT_IMAGE_URL}'">
@@ -459,9 +378,7 @@ function buildCard(item, isDeals = false) {
       </div>
       ${priceHtml}
       ${itemsHtml}
-      <button class="save-collection-btn" onclick="toggleCollection('${item.id}')">
-        <i class="fas fa-bookmark"></i> Save to Collection
-      </button>
+      <button class="save-collection-btn" onclick="toggleCollection('${item.id}')"><i class="fas fa-bookmark"></i> Save to Collection</button>
     </div>
   `;
 }
@@ -496,36 +413,25 @@ function renderTestimonials() {
         <p class="testimonial-text">${t.text}</p>
       </div>
     `).join('');
-  } else {
-    grid.innerHTML = '<div class="empty-state">Loading testimonials...</div>';
   }
 }
 
-// ================================================================
-// UPDATED: ACTIVE CATEGORY HEADING (Mobile + Desktop)
-// ================================================================
 function renderActiveCategoryHeading() {
     const menuPage = document.getElementById('menuPage');
     if (!menuPage) return;
-    
     let headingContainer = document.getElementById('activeCategoryHeading');
     if (!headingContainer) {
         headingContainer = document.createElement('div');
         headingContainer.id = 'activeCategoryHeading';
         headingContainer.className = 'active-category-heading';
         const pageHeader = menuPage.querySelector('.page-header');
-        if (pageHeader) {
-            pageHeader.insertAdjacentElement('afterend', headingContainer);
-        }
+        if (pageHeader) pageHeader.insertAdjacentElement('afterend', headingContainer);
     }
-    
-    let displayName = activeCategory === 'All' ? 'Our Signature Menu' : activeCategory;
-    let itemCount = activeCategory === 'All' ? menuData.length : menuData.filter(i => i.category === activeCategory).length;
-    
+    const itemCount = activeCategory === 'All' ? menuData.length : menuData.filter(i => i.category === activeCategory).length;
     if (activeCategory === 'All') {
         headingContainer.innerHTML = `<h2>Our Signature Menu</h2><p>Explore curated categories & premium delights (${itemCount} items)</p>`;
     } else {
-        headingContainer.innerHTML = `<h2>${displayName}</h2><p>Explore our delicious ${displayName.toLowerCase()} collection (${itemCount} items)</p>`;
+        headingContainer.innerHTML = `<h2>${activeCategory}</h2><p>Explore our delicious collection (${itemCount} items)</p>`;
     }
 }
 
@@ -541,8 +447,6 @@ function renderCategorySlider() {
 function renderMenuItems() {
     const grid = document.getElementById('menuItemsGrid');
     if (!grid) return;
-    
-    // Update desktop page header
     const pageHeader = document.querySelector('#menuPage .page-header');
     if (pageHeader) {
         if (activeCategory === 'All') {
@@ -551,9 +455,7 @@ function renderMenuItems() {
             pageHeader.innerHTML = `<h1>${activeCategory}</h1><p>Explore our delicious ${activeCategory.toLowerCase()} collection</p>`;
         }
     }
-    
     renderActiveCategoryHeading();
-    
     const filtered = activeCategory === 'All' ? menuData : menuData.filter(i => i.category === activeCategory);
     if (filtered.length === 0) {
         grid.innerHTML = `<div class="empty-state"><i class="fas fa-utensils"></i><h3>No items in "${activeCategory}"</h3><button onclick="filterByCategory('All')" style="margin-top:15px;padding:10px 25px;background:var(--red);border:none;border-radius:30px;color:white;cursor:pointer;">View All Items</button></div>`;
@@ -584,7 +486,7 @@ function renderDealsPage() {
     if (dealsData && dealsData.length > 0) {
         grid.innerHTML = dealsData.map(deal => buildCard(deal, true)).join('');
     } else {
-        grid.innerHTML = `<div class="empty-state"><i class="fas fa-tags"></i><h3>No deals available</h3><p>Check back soon for exciting offers!</p></div>`;
+        grid.innerHTML = `<div class="empty-state"><i class="fas fa-tags"></i><h3>No deals available</h3></div>`;
     }
     refreshHearts();
 }
@@ -597,16 +499,7 @@ async function renderFavorites() {
         grid.innerHTML = `<div class="empty-state"><i class="fas fa-heart"></i><h3>No favorites yet</h3><p>Login and click the heart icon to save your favorite dishes here.</p></div>`;
         return;
     }
-    grid.innerHTML = favs.map(item => buildCard({
-        id: item.item_id,
-        name: item.item_name,
-        category: item.item_category,
-        price: item.item_price,
-        img: item.item_image,
-        desc: item.item_description || 'Delicious item',
-        rating: 4.5,
-        reviews: 100
-    })).join('');
+    grid.innerHTML = favs.map(item => buildCard({ id: item.item_id, name: item.item_name, category: item.item_category, price: item.item_price, img: item.item_image, desc: 'Delicious item', rating: 4.5, reviews: 100 })).join('');
     refreshHearts();
 }
 
@@ -618,16 +511,7 @@ async function renderCollection() {
         grid.innerHTML = `<div class="empty-state"><i class="fas fa-bookmark"></i><h3>Collection empty</h3><p>Login and save items to see them here.</p></div>`;
         return;
     }
-    grid.innerHTML = collections.map(item => buildCard({
-        id: item.item_id,
-        name: item.item_name,
-        category: item.item_category,
-        price: item.item_price,
-        img: item.item_image,
-        desc: item.note || 'Saved item',
-        rating: 4.5,
-        reviews: 100
-    })).join('');
+    grid.innerHTML = collections.map(item => buildCard({ id: item.item_id, name: item.item_name, category: item.item_category, price: item.item_price, img: item.item_image, desc: item.note || 'Saved item', rating: 4.5, reviews: 100 })).join('');
     refreshHearts();
 }
 
@@ -641,57 +525,38 @@ window.addEventListener('DOMContentLoaded', () => {
             if (category.items && Array.isArray(category.items)) {
                 category.items.forEach(item => {
                     let itemImg = DEFAULT_IMAGE_URL;
-                    if (typeof getItemImage === 'function') {
-                        itemImg = getItemImage(item.name);
-                    } else if (typeof itemImages !== 'undefined' && itemImages[item.name]) {
-                        itemImg = itemImages[item.name];
-                    }
+                    if (typeof getItemImage === 'function') itemImg = getItemImage(item.name);
+                    else if (typeof itemImages !== 'undefined' && itemImages[item.name]) itemImg = itemImages[item.name];
                     let itemDesc = 'Freshly prepared with premium ingredients';
                     let itemTag = 'Popular';
-                    if (typeof getDescriptionForCategory === 'function') {
-                        itemDesc = getDescriptionForCategory(category.category);
-                    } else if (typeof categoryInfo !== 'undefined' && categoryInfo[category.category]) {
+                    if (typeof getDescriptionForCategory === 'function') itemDesc = getDescriptionForCategory(category.category);
+                    else if (typeof categoryInfo !== 'undefined' && categoryInfo[category.category]) {
                         itemDesc = categoryInfo[category.category].desc;
                         itemTag = categoryInfo[category.category].tag;
                     }
                     menuData.push({
                         id: `menu_${category.category.replace(/\s/g, '_')}_${item.name.replace(/\s/g, '_')}`,
-                        name: item.name,
-                        category: category.category,
-                        price: item.price,
-                        desc: itemDesc,
-                        rating: 4.5 + (Math.random() * 0.4),
-                        reviews: Math.floor(50 + (Math.random() * 300)),
-                        tag: itemTag,
-                        img: itemImg
+                        name: item.name, category: category.category, price: item.price,
+                        desc: itemDesc, rating: 4.5 + (Math.random() * 0.4),
+                        reviews: Math.floor(50 + (Math.random() * 300)), tag: itemTag, img: itemImg
                     });
                 });
             }
         });
     }
-    
     if (typeof deals !== 'undefined' && deals && Array.isArray(deals)) {
         dealsData = deals.map(deal => {
             let dealImg = DEFAULT_IMAGE_URL;
-            if (typeof getDealImage === 'function') {
-                dealImg = getDealImage(deal.id);
-            } else if (typeof dealImages !== 'undefined' && dealImages[deal.id]) {
-                dealImg = dealImages[deal.id];
-            }
+            if (typeof getDealImage === 'function') dealImg = getDealImage(deal.id);
+            else if (typeof dealImages !== 'undefined' && dealImages[deal.id]) dealImg = dealImages[deal.id];
             return {
-                id: deal.id,
-                name: deal.name,
-                price: deal.price,
-                items: deal.items || [],
-                rating: 4.6 + (Math.random() * 0.3),
-                reviews: Math.floor(80 + (Math.random() * 400)),
+                id: deal.id, name: deal.name, price: deal.price, items: deal.items || [],
+                rating: 4.6 + (Math.random() * 0.3), reviews: Math.floor(80 + (Math.random() * 400)),
                 discount: `${Math.floor(15 + (Math.random() * 25))}% OFF`,
-                oldPrice: `Rs. ${Math.floor(deal.price * 1.3)}`,
-                img: dealImg
+                oldPrice: `Rs. ${Math.floor(deal.price * 1.3)}`, img: dealImg
             };
         });
     }
-    
     renderPopularDishes();
     renderTestimonials();
     renderMenuPage();
@@ -699,13 +564,9 @@ window.addEventListener('DOMContentLoaded', () => {
     renderFavorites();
     renderCollection();
     nav('home');
-    
     const savedUser = localStorage.getItem('hnt_user');
     if (savedUser) {
-        try {
-            currentUser = JSON.parse(savedUser);
-            updateUIForLoggedInUser();
-        } catch(e) { console.error(e); }
+        try { currentUser = JSON.parse(savedUser); updateUIForLoggedInUser(); } catch(e) {}
     }
 });
 
@@ -719,50 +580,37 @@ if (subscribeForm) {
         const name = document.getElementById('subName')?.value.trim();
         const email = document.getElementById('subEmail')?.value.trim();
         const phone = document.getElementById('subPhone')?.value.trim();
-        if (!name || !email) {
-            toast.warning('Please fill in your name and email.');
-            return;
-        }
+        if (!name || !email) { toast.warning('Please fill in your name and email.'); return; }
         const submitBtn = subscribeForm.querySelector('.subscribe-btn');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Subscribing...';
         submitBtn.disabled = true;
         try {
             const response = await fetch(`${API_BASE_URL}/subscribe`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, email, phone })
             });
             const data = await response.json();
             if (data.success) {
                 toast.success(`Welcome ${name}! Enjoy 20% off on your first order.`, { title: 'Subscribed!', duration: 5000 });
                 subscribeForm.reset();
-            } else {
-                throw new Error('Subscription failed');
-            }
+            } else { throw new Error('failed'); }
         } catch (error) {
             toast.error('Something went wrong. Please try again.', { title: 'Subscription Failed' });
-        } finally {
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-        }
+        } finally { submitBtn.innerHTML = originalText; submitBtn.disabled = false; }
     });
 }
 
 // ================================================================
-// AUTH MODAL & FUNCTIONS
+// AUTH MODAL
 // ================================================================
 const authModal = document.getElementById('authModal');
 const openModalBtn = document.getElementById('openModalBtn');
 const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
 
-if (openModalBtn) {
-    openModalBtn.addEventListener('click', () => authModal?.classList.add('open'));
-}
-if (authModal) {
-    authModal.addEventListener('click', (e) => { if (e.target === authModal) authModal.classList.remove('open'); });
-}
+if (openModalBtn) openModalBtn.addEventListener('click', () => authModal?.classList.add('open'));
+if (authModal) authModal.addEventListener('click', (e) => { if (e.target === authModal) authModal.classList.remove('open'); });
 
 document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -818,14 +666,10 @@ function updateUIForLoggedOutUser() {
 async function doLogin() {
     const email = document.getElementById('loginEmail')?.value.trim();
     const password = document.getElementById('loginPass')?.value.trim();
-    if (!email || !password) {
-        toast.warning('Please enter your email and password.');
-        return;
-    }
+    if (!email || !password) { toast.warning('Please enter your email and password.'); return; }
     try {
         const response = await fetch(`${API_BASE_URL}/auth/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
         });
         const data = await response.json();
@@ -834,30 +678,19 @@ async function doLogin() {
             localStorage.setItem('hnt_user', JSON.stringify(currentUser));
             updateUIForLoggedInUser();
             toast.success(`Welcome back, ${currentUser.name}.`, { title: 'Signed In' });
-        } else {
-            toast.error(data.error || 'Invalid email or password.', { title: 'Login Failed' });
-        }
-    } catch (error) {
-        toast.error('Connection error. Please try again.', { title: 'Login Failed' });
-    }
+        } else { toast.error(data.error || 'Invalid email or password.', { title: 'Login Failed' }); }
+    } catch (error) { toast.error('Connection error. Please try again.', { title: 'Login Failed' }); }
 }
 
 async function doRegister() {
     const name = document.getElementById('regName')?.value.trim();
     const email = document.getElementById('regEmail')?.value.trim();
     const password = document.getElementById('regPass')?.value.trim();
-    if (!name || !email || !password) {
-        toast.warning('Please fill all registration fields.');
-        return;
-    }
-    if (password.length < 6) {
-        toast.warning('Password must be at least 6 characters.');
-        return;
-    }
+    if (!name || !email || !password) { toast.warning('Please fill all registration fields.'); return; }
+    if (password.length < 6) { toast.warning('Password must be at least 6 characters.'); return; }
     try {
         const response = await fetch(`${API_BASE_URL}/auth/register`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, email, password, phone: '' })
         });
         const data = await response.json();
@@ -866,12 +699,8 @@ async function doRegister() {
             localStorage.setItem('hnt_user', JSON.stringify(currentUser));
             updateUIForLoggedInUser();
             toast.success(`Your account has been created.`, { title: `Welcome, ${name}.`, duration: 5000 });
-        } else {
-            toast.error(data.error || 'Registration failed.', { title: 'Registration Failed' });
-        }
-    } catch (error) {
-        toast.error('Connection error. Please try again.', { title: 'Registration Failed' });
-    }
+        } else { toast.error(data.error || 'Registration failed.', { title: 'Registration Failed' }); }
+    } catch (error) { toast.error('Connection error. Please try again.', { title: 'Registration Failed' }); }
 }
 
 function doLogout() {
@@ -893,12 +722,8 @@ document.getElementById('forgotBtn')?.addEventListener('click', () => {
 // ================================================================
 // PROFILE DROPDOWN
 // ================================================================
-function toggleProfileDropdown() { 
-    document.getElementById('profileDropdown')?.classList.toggle('open'); 
-}
-function closeProfileDropdown() { 
-    document.getElementById('profileDropdown')?.classList.remove('open'); 
-}
+function toggleProfileDropdown() { document.getElementById('profileDropdown')?.classList.toggle('open'); }
+function closeProfileDropdown() { document.getElementById('profileDropdown')?.classList.remove('open'); }
 document.addEventListener('click', (e) => {
     const wrap = document.getElementById('profileWrap');
     if (wrap && !wrap.contains(e.target)) closeProfileDropdown();
@@ -907,10 +732,7 @@ document.addEventListener('click', (e) => {
 // ================================================================
 // CHANGE PASSWORD
 // ================================================================
-function openChangePw() {
-    closeProfileDropdown();
-    document.getElementById('cpwModal')?.classList.add('open');
-}
+function openChangePw() { closeProfileDropdown(); document.getElementById('cpwModal')?.classList.add('open'); }
 function closeCpwModal() {
     document.getElementById('cpwModal')?.classList.remove('open');
     const cpwNew = document.getElementById('cpwNew');
@@ -941,9 +763,7 @@ function openChangeName() {
     const newNameInput = document.getElementById('newName');
     if (newNameInput) newNameInput.value = currentUser?.name || '';
 }
-function closeChangeNameModal() { 
-    document.getElementById('changeNameModal')?.classList.remove('open'); 
-}
+function closeChangeNameModal() { document.getElementById('changeNameModal')?.classList.remove('open'); }
 function submitChangeName() {
     const name = document.getElementById('newName')?.value.trim();
     if (!name) { toast.warning('Please enter a display name.'); return; }
@@ -960,7 +780,7 @@ function submitChangeName() {
 }
 
 // ================================================================
-// CHATBOT
+// CHATBOT — CONNECTED TO GROQ via chatbot.js
 // ================================================================
 const chatbotBtn = document.getElementById('chatbotBtn');
 const chatbotModal = document.getElementById('chatbotModal');
@@ -995,37 +815,28 @@ function hideChatTyping() {
     if (indicator) indicator.remove();
 }
 
-function getSmartChatReply(message) {
-    const msg = message.toLowerCase();
-    if (msg.includes('km') || msg.includes('distance') || msg.includes('naimzabad')) {
-        return "📍 From Naimzabad to Malir 15 is approximately 17-20 km. Use Google Maps for exact directions to Shop #9, Muhabbat Nagar, Malir 15, Karachi.";
-    }
-    if (msg.includes('price') || msg.includes('cost')) {
-        if (msg.includes('zinger')) return "Zinger Burger: Rs. 340 (regular), Rs. 420 (Jumbo Cheese)";
-        if (msg.includes('roll')) return "Chicken rolls start at Rs. 180, Beef rolls at Rs. 220";
-        return "Check our Menu page for all prices!";
-    }
-    if (msg.includes('time') || msg.includes('open')) {
-        return "⏰ Mon-Thu: 11 AM-11 PM, Fri: 12 PM-11:30 PM, Weekends: 11 AM-12 AM";
-    }
-    return "I can help with menu, prices, deals, delivery, timings, or location. What would you like to know?";
-}
-
+// ================================================================
+// KEY CHANGE: Now calls sendChatbotMessage() from chatbot.js
+// NOT the old getSmartChatReply() function
+// ================================================================
 async function sendChatMessageHandler() {
     if (!chatInputEl) return;
     const message = chatInputEl.value.trim();
     if (!message || isChatSending) return;
+
     chatInputEl.value = '';
     appendChatMessage(message, 'user');
     showChatTyping();
     isChatSending = true;
+
     try {
-        let reply = getSmartChatReply(message);
+        // Uses GROQ-powered sendChatbotMessage from chatbot.js
+        const reply = await sendChatbotMessage(message);
         hideChatTyping();
-        appendChatMessage(reply, 'bot');
+        appendChatMessage(reply || "Sorry, I could not process that. Please try again.", 'bot');
     } catch (error) {
         hideChatTyping();
-        appendChatMessage("Sorry, please call us at 0318-2370631 for help.", 'bot');
+        appendChatMessage("Sorry, having trouble connecting. Call us at 0318-2370631.", 'bot');
     } finally {
         isChatSending = false;
     }
@@ -1037,7 +848,10 @@ function setupChatbot() {
             chatbotModal?.classList.toggle('open');
             if (chatbotModal?.classList.contains('open') && chatMessagesEl && chatMessagesEl.children.length === 0) {
                 setTimeout(() => {
-                    appendChatMessage("Welcome to Hot N Tasty Roll! 🍽️\n\nI can help with:\n• Menu & Prices\n• Deals & Offers\n• Delivery Info\n• Location & Timings\n\nWhat would you like to know?", 'bot');
+                    const greeting = typeof getChatbotGreeting === 'function'
+                        ? getChatbotGreeting()
+                        : "Welcome to Hot N Tasty Roll! 🍽️ How can I help you today?";
+                    appendChatMessage(greeting, 'bot');
                 }, 300);
             }
         });
@@ -1045,8 +859,10 @@ function setupChatbot() {
     if (closeChatBtn) {
         closeChatBtn.addEventListener('click', () => chatbotModal?.classList.remove('open'));
     }
+
     chatInputEl = document.getElementById('chatInput');
     sendChatBtnEl = document.getElementById('sendChatBtn');
+
     if (sendChatBtnEl) {
         const newBtn = sendChatBtnEl.cloneNode(true);
         sendChatBtnEl.parentNode.replaceChild(newBtn, sendChatBtnEl);
@@ -1056,6 +872,7 @@ function setupChatbot() {
             sendChatMessageHandler();
         });
     }
+
     if (chatInputEl) {
         const newInput = chatInputEl.cloneNode(true);
         chatInputEl.parentNode.replaceChild(newInput, chatInputEl);
