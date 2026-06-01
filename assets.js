@@ -586,7 +586,7 @@ const dealImages = {
   8: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF7JJbSrwAT62mYx84YBjyRtqCTomlNSFXhQ&s",
    9:"https://ik.imagekit.io/iwcam3r8ka/prod/blog-header/202410/55d1668b-dd11-45cc-a2b8-c95c9bcce76b.jpg",
    10:"https://static01.nyt.com/images/2025/06/03/multimedia/KA-Beef-Boti-tzcp/KA-Beef-Boti-tzcp-threeByTwoMediumAt2X.jpg",
-   11:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHaY9YQRMf1DGi8u_mPYJdqfXgKUGo_JrPCg&s"
+   11:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHaY9YQRMf1DGi8u_mPYJdqfXgKUGo_JrPCg&s",
    12:"https://i.ytimg.com/vi/4pdul_dURpw/sddefault.jpg",
    13:"https://cdn.fishry.com/product/CHICKEN-TIKKA---LEG-1-895ee28-chickentikkainn.jpg"
 };
