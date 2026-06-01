@@ -578,12 +578,17 @@ const deals = [
 const dealImages = {
   1: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800&auto=format",
   2: "https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=800&auto=format",
-  3: "https://images.unsplash.com/photo-1606755962773-d324e0a13086?q=80&w=800&auto=format",
-  4: "https://images.unsplash.com/photo-1520072959219-c595dc870360?q=80&w=800&auto=format",
-  5: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?q=80&w=800&auto=format",
-  6: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=800&auto=format",
-  7: "https://images.unsplash.com/photo-1608039755401-742074f0548d?q=80&w=800&auto=format",
-  8: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=800&auto=format"
+  3: "https://mirchihut.pk/wp-content/uploads/2020/09/beef-club-sandwich.jpg",
+  4: "https://alamfoodcorner.businesswala.pk/assets/uploads/dbde65f096107e2a00c086f7c87d709d.jpg",
+  5: "https://services.eatx.pk//ProductImages/cd2b92e7-fd72-42d6-bfb1-bf4799ebf5b4.jpeg",
+  6: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQudwx5wJGZCfTGrQJgJLW9sXbrI_f2gjT1Gg&s",
+  7: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQijWTs0c-4aDtRvKRMa6QGnf7OzcQ5ir2Yow&s",
+  8: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF7JJbSrwAT62mYx84YBjyRtqCTomlNSFXhQ&s",
+   9:"https://ik.imagekit.io/iwcam3r8ka/prod/blog-header/202410/55d1668b-dd11-45cc-a2b8-c95c9bcce76b.jpg",
+   10:"https://static01.nyt.com/images/2025/06/03/multimedia/KA-Beef-Boti-tzcp/KA-Beef-Boti-tzcp-threeByTwoMediumAt2X.jpg",
+   11:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHaY9YQRMf1DGi8u_mPYJdqfXgKUGo_JrPCg&s"
+   12:"https://i.ytimg.com/vi/4pdul_dURpw/sddefault.jpg",
+   13:"https://cdn.fishry.com/product/CHICKEN-TIKKA---LEG-1-895ee28-chickentikkainn.jpg"
 };
 
 // Menu Item Images
