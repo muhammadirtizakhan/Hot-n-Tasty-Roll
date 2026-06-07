@@ -3,251 +3,290 @@
    All static data: images, menu items, deals, testimonials
 ================================================================ */
 
-// Menu Data
+// Menu Data (Prices Updated)
 const menu = [
   {
     category: "SHAPATAR SPECIAL JUMBO ROLLS",
     items: [
-      { name: "Shapatar Special Jumbo Roll", price: 320 },
-      { name: "Crispy Spicy Jumbo Roll", price: 300 },
-      { name: "Crispy Spicy Jumbo Roll Cheese", price: 350 },
-      { name: "Crispy Jumbo Chatpata Roll", price: 300 },
-      { name: "Small Crispy Roll", price: 200 }
+      { name: "Shapatar Special Jumbo Roll", price: 750 },
+      { name: "Crispy Spicy Jumbo Roll", price: 450 },
+      { name: "Crispy Spicy Jumbo Roll Cheese", price: 500 },
+      { name: "Crispy Jumbo Chatpata Roll", price: 500 },
+      { name: "Small Crispy Roll", price: 300 }
     ]
   },
   {
     category: "CHICKEN ROLLS",
     items: [
-      { name: "Chicken Chatni Roll", price: 180 },
-      { name: "Chicken Mayo Garlic Roll", price: 200 },
-      { name: "Chicken Cheese Roll", price: 230 },
-      { name: "Chicken Behari Chatni Roll", price: 220 },
-      { name: "Chicken Behari Cheese Roll", price: 250 },
-      { name: "Chicken Juicy Mayo Roll", price: 220 },
-      { name: "Chicken Chatpata Roll", price: 200 },
-      { name: "Chicken Spicy Roll", price: 200 },
+      { name: "Chicken Chatni Roll", price: 220 },
+      { name: "Chicken Mayo Garlic Roll", price: 250 },
+      { name: "Chicken Cheese Roll", price: 280 },
+      { name: "Chicken Behari Chatni Roll", price: 240 },
+      { name: "Chicken Behari Cheese Roll", price: 300 },
+      { name: "Chicken Juicy Mayo Roll", price: 250 },
+      { name: "Chicken Chatpata Roll", price: 250 },
+      { name: "Chicken Spicy Roll", price: 270 },
       { name: "Chicken Reshmi Kabab Chatni Roll", price: 220 },
-      { name: "Chicken Reshmi Garlic Mayo Roll", price: 240 },
+      { name: "Chicken Reshmi Garlic Mayo Roll", price: 250 },
       { name: "Chicken Reshmi Cheese Roll", price: 270 },
-      { name: "Chicken Reshmi Chatpata Roll", price: 240 },
-      { name: "Chicken Reshmi Behari Chatni Roll", price: 250 },
-      { name: "Chicken Reshmi Juicy Mayo Roll", price: 240 },
-      { name: "Chicken Reshmi Behari Mayo Roll", price: 250 },
-      { name: "Chicken Reshmi Behari Cheese Roll", price: 280 }
+      { name: "Chicken Reshmi Chatpata Roll", price: 250 },
+      { name: "Chicken Reshmi Behari Chatni Roll", price: 220 },
+      { name: "Chicken Reshmi Juicy Mayo Roll", price: 270 },
+      { name: "Chicken Reshmi Behari Mayo Roll", price: 240 },
+      { name: "Chicken Reshmi Behari Cheese Roll", price: 260 }
     ]
   },
   {
     category: "CHICKEN MALAI ROLLS",
     items: [
-      { name: "Chicken Malai Chatni Roll", price: 240 },
-      { name: "Chicken Malai Garlic Roll", price: 260 },
-      { name: "Chicken Malai Mayo Cheese Roll", price: 310 },
-      { name: "Chicken Malai Behari Roll", price: 280 },
-      { name: "Chicken Juicy Malai Roll", price: 260 },
+      { name: "Chicken Malai Chatni Roll", price: 250 },
+      { name: "Chicken Malai Garlic Roll", price: 280 },
+      { name: "Chicken Malai Mayo Cheese Roll", price: 320 },
+      { name: "Chicken Malai Behari Roll", price: 270 },
+      { name: "Chicken Juicy Malai Roll", price: 280 },
       { name: "Chicken Malai Chatpata Roll", price: 260 },
-      { name: "Chicken Malai Behari Cheese Roll", price: 310 },
-      { name: "Chicken Malai Spicy Mayo Roll", price: 280 }
+      { name: "Chicken Malai Behari Cheese Roll", price: 320 },
+      { name: "Chicken Malai Spicy Mayo Roll", price: 300 }
     ]
   },
   {
     category: "BEEF BOTI ROLLS",
     items: [
-      { name: "Beef Boti Roll", price: 220 },
-      { name: "Beef Mayo Roll", price: 240 },
-      { name: "Beef Cheese Roll", price: 270 },
-      { name: "Beef Chatpata Roll", price: 240 },
-      { name: "Beef Behari Roll", price: 250 },
-      { name: "Beef Juicy Roll", price: 240 },
-      { name: "Beef Spicy Roll", price: 240 }
+      { name: "Beef Boti Roll", price: 250 },
+      { name: "Beef Mayo Roll", price: 300 },
+      { name: "Beef Cheese Roll", price: 300 },
+      { name: "Beef Chatpata Roll", price: 270 },
+      { name: "Beef Behari Roll", price: 270 },
+      { name: "Beef Juicy Roll", price: 280 },
+      { name: "Beef Spicy Roll", price: 300 }
     ]
   },
   {
     category: "BEEF KABAB ROLLS",
     items: [
-      { name: "Beef Kabab Chatni Roll", price: 200 },
-      { name: "Beef Kabab Mayo Roll", price: 220 },
-      { name: "Beef Kabab Cheese Roll", price: 250 },
-      { name: "Beef Kabab Chatpata Roll", price: 220 },
-      { name: "Beef Kabab Behari Chatpata Roll", price: 240 },
-      { name: "Beef Kabab Behari Chatni Roll", price: 240 },
-      { name: "Beef Kabab Behari Mayo Cheese Roll", price: 290 },
-      { name: "Beef Kabab Spicy Roll", price: 220 }
+      { name: "Beef Kabab Chatni Roll", price: 220 },
+      { name: "Beef Kabab Mayo Roll", price: 250 },
+      { name: "Beef Kabab Cheese Roll", price: 280 },
+      { name: "Beef Kabab Chatpata Roll", price: 250 },
+      { name: "Beef Kabab Behari Chatpata Roll", price: 250 },
+      { name: "Beef Kabab Behari Chatni Roll", price: 250 },
+      { name: "Beef Kabab Behari Mayo Cheese Roll", price: 300 },
+      { name: "Beef Kabab Spicy Roll", price: 250 }
     ]
   },
   {
     category: "BAR B.Q",
     items: [
-      { name: "Chicken Tikka (Leg)", price: 280 },
-      { name: "Chicken Tikka (Chest)", price: 320 },
-      { name: "Green Tikka", price: 320 },
-      { name: "Malai Tikka", price: 340 },
-      { name: "Chicken Malai Boti Plate", price: 380 },
-      { name: "Chicken Boti Plate", price: 360 },
-      { name: "Beef Boti Plate", price: 380 },
-      { name: "Beef Kabab Plate", price: 350 },
-      { name: "Beef Gola Kabab Plate", price: 370 },
-      { name: "Malai Fry Boti", price: 400 },
-      { name: "Dhaga Kabab", price: 370 },
-      { name: "Chicken Reshmi Kabab", price: 360 },
-      { name: "Chicken Makhni Kabab", price: 380 },
-      { name: "Chandan Kabab", price: 390 },
-      { name: "Green Boti", price: 360 },
-      { name: "Namkeen Tikka", price: 340 },
-      { name: "Turkish Kabab", price: 380 },
-      { name: "Chicken Behari Tikka (Chest)", price: 340 },
-      { name: "Chicken Behari Tikka (Leg)", price: 300 }
+      { name: "Chicken Tikka (Leg)", price: 370 },
+      { name: "Chicken Tikka (Chest)", price: 400 },
+      { name: "Green Tikka", price: 450 },
+      { name: "Malai Tikka", price: 450 },
+      { name: "Chicken Malai Boti Plate", price: 500 },
+      { name: "Chicken Boti Plate", price: 450 },
+      { name: "Beef Boti Plate", price: 550 },
+      { name: "Beef Kabab Plate", price: 450 },
+      { name: "Beef Gola Kabab Plate", price: 500 },
+      { name: "Malai Fry Boti", price: 600 },
+      { name: "Dhaga Kabab", price: 500 },
+      { name: "Chicken Reshmi Kabab", price: 450 },
+      { name: "Chicken Makhni Kabab", price: 500 },
+      { name: "Chandan Kabab", price: 500 },
+      { name: "Green Boti", price: 500 },
+      { name: "Namkeen Tikka", price: 500 },
+      { name: "Turkish Kabab", price: 500 },
+      { name: "Chicken Behari Tikka (Chest)", price: 450 },
+      { name: "Chicken Behari Tikka (Leg)", price: 400 }
     ]
   },
   {
     category: "BURGERS",
     items: [
-      { name: "Regular Beef Burger", price: 250 },
-      { name: "Beef Cheese Burger", price: 300 },
-      { name: "Beef Jumbo Burger", price: 350 },
-      { name: "Beef Jumbo Cheese Burger", price: 400 },
-      { name: "Chicken Burger", price: 220 },
-      { name: "Chicken Cheese Burger", price: 270 },
-      { name: "Chicken Big Burger", price: 300 },
-      { name: "Chicken Big Burger Cheese", price: 350 }
+      { name: "Regular Beef Burger", price: 300 },
+      { name: "Beef Cheese Burger", price: 350 },
+      { name: "Beef Jumbo Burger", price: 520 },
+      { name: "Beef Jumbo Cheese Burger", price: 550 },
+      { name: "Chicken Burger", price: 300 },
+      { name: "Chicken Cheese Burger", price: 350 },
+      { name: "Chicken Big Burger", price: 530 },
+      { name: "Chicken Big Burger Cheese", price: 600 }
     ]
   },
   {
     category: "ZINGER BURGER",
     items: [
-      { name: "Junior Zinger", price: 280 },
-      { name: "King Size Zinger Burger", price: 380 },
-      { name: "Zinger Cheese Burger", price: 340 },
-      { name: "Zinger Jumbo Cheese", price: 420 },
-      { name: "Chicken Jumbo Zinger", price: 400 }
+      { name: "Junior Zinger", price: 380 },
+      { name: "King Size Zinger Burger", price: 420 },
+      { name: "Zinger Cheese Burger", price: 480 },
+      { name: "Zinger Jumbo Cheese", price: 750 },
+      { name: "Chicken Jumbo Zinger", price: 700 }
     ]
   },
   {
     category: "SUB BURGER",
     items: [
-      { name: "Sub Burger Malai Boti", price: 320 },
-      { name: "Sub Burger Tikka Boti", price: 300 },
-      { name: "Sub Burger Reshmi Kabab", price: 310 },
-      { name: "Sub Burger Seekh Kabab", price: 290 }
+      { name: "Sub Burger Malai Boti", price: 450 },
+      { name: "Sub Burger Tikka Boti", price: 450 },
+      { name: "Sub Burger Reshmi Kabab", price: 450 },
+      { name: "Sub Burger Seekh Kabab", price: 450 }
     ]
   },
   {
     category: "PIZZA",
     items: [
-      { name: "Chicken Tikka", price: 600 },
-      { name: "Chicken Fajita", price: 650 },
-      { name: "Chicken Supreme", price: 750 },
-      { name: "Chicken Achari", price: 680 },
-      { name: "Chicken Afghani", price: 700 },
-      { name: "Cheese Lover", price: 550 }
+      { name: "Small Pizza", price: 370 },
+      { name: "Medium Pizza", price: 750 },
+      { name: "Large Pizza", price: 1100 },
+      { name: "Jumbo Pizza", price: 1500 }
     ]
   },
   {
-    category: "CHINESE",
+    category: "PIZZA FLAVOURS",
     items: [
-      { name: "Chicken Fried Rice", price: 350 },
-      { name: "Egg Fried Rice", price: 300 },
-      { name: "Vegetable Fried Rice", price: 280 },
-      { name: "Masala Rice", price: 320 },
-      { name: "Special Hot N Tasty Fried Rice", price: 420 },
-      { name: "Chicken Chowmen", price: 350 },
-      { name: "Vegetable Chowmen", price: 300 },
-      { name: "Hot N Tasty Special Chowmen", price: 420 },
-      { name: "Chicken Shahslik With Rice", price: 400 },
-      { name: "Chicken Manchurian With Rice", price: 380 },
-      { name: "Singapori Rice", price: 370 },
-      { name: "Chicken Chilli With Rice", price: 380 },
-      { name: "Chicken Chilli Dry With Rice", price: 400 },
-      { name: "Chicken Jalfrezi", price: 420 }
+      { name: "Chicken Tikka", price: 0 },
+      { name: "Chicken Fajita", price: 0 },
+      { name: "Chicken Supreme", price: 0 },
+      { name: "Chicken Achari", price: 0 },
+      { name: "Chicken Afghani", price: 0 },
+      { name: "Chicken Malai Boti", price: 0 },
+      { name: "Chicken Kabab Careast", price: 0 },
+      { name: "Hot & Spaicy", price: 0 },
+      { name: "Cheese Lover", price: 0 },
+      { name: "Cheese Paproni", price: 0 },
+      { name: "Caramy Tikka", price: 0 }
     ]
   },
   {
-    category: "BROAST",
+    category: "EXTRA TOPPING",
     items: [
-      { name: "Chicken Broast Qtr. Leg", price: 320 },
-      { name: "Chest Broast Qtr. Chest", price: 340 },
-      { name: "Chicken Cheese Broast Qtr. Chest", price: 390 },
-      { name: "Mayo Garlic Broast Qtr. Chest", price: 390 },
-      { name: "Chicken Broast Qtr. Chatpata (Chest)", price: 360 },
-      { name: "Chicken Broast Chatpata Qtr. (Leg)", price: 340 },
-      { name: "Chicken Broast Full", price: 1100 },
-      { name: "Chicken Broast Half", price: 600 }
+      { name: "Small Extra Topping", price: 80 },
+      { name: "Medium Extra Topping", price: 130 },
+      { name: "Large Extra Topping", price: 160 },
+      { name: "Jumbo Extra Topping", price: 200 }
     ]
   },
   {
-    category: "WINGS & DRUMSTICKS",
+    category: "KARAHI",
     items: [
-      { name: "Hot Tasty Wings with Fries (6 Pcs)", price: 450 },
-      { name: "Hot Tasty Wings with Fries (3 Pcs)", price: 280 },
-      { name: "Chicken Drum Stick with Fries (6 Pcs)", price: 480 },
-      { name: "Chicken Drum Stick with Fries (3 Pcs)", price: 300 }
+      { name: "Chicken Karahi Full", price: 2100 },
+      { name: "Chicken Karahi Half", price: 1200 },
+      { name: "Chicken Brown Karahi Full", price: 2100 },
+      { name: "Chicken Brown Karahi Half", price: 1200 }
     ]
   },
   {
-    category: "SANDWICHES",
+    category: "HANDI",
     items: [
-      { name: "Chicken Sandwich", price: 250 },
-      { name: "Chicken Club Sandwich", price: 320 },
-      { name: "Chicken BBQ Sandwich", price: 280 },
-      { name: "Chicken BBQ Club Sandwich", price: 350 },
-      { name: "Chicken Malai Club Sandwich", price: 350 },
-      { name: "Chicken Malai Sandwich", price: 300 },
-      { name: "Crispy Club Sandwich", price: 350 }
+      { name: "Chicken Handi Full", price: 2400 },
+      { name: "Chicken Handi Half", price: 1300 },
+      { name: "Chicken Brown Handi Full", price: 2400 },
+      { name: "Chicken Brown Handi Half", price: 1300 },
+      { name: "Chicken Makhni Handi Full", price: 2400 },
+      { name: "Chicken Makhni Handi Half", price: 1300 }
     ]
   },
   {
-    category: "KARAHI & HANDI",
+    category: "FRENCH FRIES",
     items: [
-      { name: "Chicken Karahi", price: 800 },
-      { name: "Chicken Brown Karahi", price: 850 },
-      { name: "Chicken Shahi Karahi", price: 900 },
-      { name: "Chicken White Karahi", price: 900 },
-      { name: "Chicken Achari Karahi", price: 850 },
-      { name: "Chicken Handi", price: 800 },
-      { name: "Chicken Brown Handi", price: 850 },
-      { name: "Chicken Makhni Handi", price: 900 }
+      { name: "Regular Fries", price: 200 },
+      { name: "Masala Fries", price: 230 },
+      { name: "Mayo Fries", price: 300 },
+      { name: "Cheese Fries", price: 300 },
+      { name: "Small Pizza Fries", price: 500 },
+      { name: "Large Pizza Fries", price: 650 }
     ]
   },
   {
     category: "PASTA",
     items: [
-      { name: "Chicken Tikka Pasta", price: 380 },
-      { name: "Creamy Pasta Small", price: 350 },
-      { name: "Creamy Pasta Large", price: 550 }
+      { name: "Chicken Tikka Pasta", price: 650 },
+      { name: "Creamy Pasta Small", price: 500 },
+      { name: "Creamy Pasta Large", price: 650 }
     ]
   },
   {
-    category: "FRIES",
+    category: "CHINESE",
     items: [
-      { name: "Regular Fries", price: 150 },
-      { name: "Masala Fries", price: 180 },
-      { name: "Cheese Fries", price: 230 },
-      { name: "Mayo Fries", price: 200 },
-      { name: "Small Pizza Fries", price: 280 },
-      { name: "Large Pizza Fries", price: 450 }
+      { name: "Chicken Fried Rice", price: 500 },
+      { name: "Egg Fried Rice", price: 450 },
+      { name: "Vegetable Fried Rice", price: 450 },
+      { name: "Masala Rice", price: 500 },
+      { name: "Special Hot N Tasty Fried Rice", price: 550 },
+      { name: "Chicken Chowmein", price: 500 },
+      { name: "Vegetable Chowmein", price: 450 },
+      { name: "Hot N Tasty Special Chowmein", price: 550 },
+      { name: "Chicken Shahslik With Rice", price: 600 },
+      { name: "Chicken Manchurian With Rice", price: 600 },
+      { name: "Singapori Rice", price: 700 },
+      { name: "Chicken Chilli With Rice", price: 650 },
+      { name: "Chicken Chilli Dry With Rice", price: 600 },
+      { name: "Chicken Jalfrezi", price: 600 }
+    ]
+  },
+  {
+    category: "SOUP",
+    items: [
+      { name: "Chicken Corn Soup", price: 200 },
+      { name: "Chicken Hot Soup", price: 250 },
+      { name: "Chicken Sour Soup", price: 250 },
+      { name: "Hot N Tasty Soup", price: 250 }
+    ]
+  },
+  {
+    category: "BROAST",
+    items: [
+      { name: "Chicken Broast Qtr. Leg", price: 450 },
+      { name: "Chest Broast Qtr. Chest", price: 500 },
+      { name: "Chicken Cheese Broast Qtr. Chest", price: 600 },
+      { name: "Mayo Garlic Broast Qtr. Chest", price: 600 },
+      { name: "Chicken Broast Qtr. Chatpata (Chest)", price: 600 },
+      { name: "Chicken Broast Chatpata Qtr. (Leg)", price: 550 },
+      { name: "Chicken Broast Full", price: 1750 },
+      { name: "Chicken Broast Half", price: 900 }
+    ]
+  },
+  {
+    category: "WINGS & DRUMSTICKS",
+    items: [
+      { name: "Hot Tasty Wings with Fries (6 Pcs)", price: 700 },
+      { name: "Hot Tasty Wings with Fries (3 Pcs)", price: 400 },
+      { name: "Chicken Drum Stick with Fries (6 Pcs)", price: 1200 },
+      { name: "Chicken Drum Stick with Fries (3 Pcs)", price: 600 }
+    ]
+  },
+  {
+    category: "SANDWICHES",
+    items: [
+      { name: "Chicken Sandwich", price: 400 },
+      { name: "Chicken Club Sandwich", price: 420 },
+      { name: "Chicken BBQ Sandwich", price: 480 },
+      { name: "Chicken BBQ Club Sandwich", price: 500 },
+      { name: "Chicken Malai Club Sandwich", price: 500 },
+      { name: "Chicken Malai Sandwich", price: 470 },
+      { name: "Crispy Club Sandwich", price: 500 }
     ]
   },
   {
     category: "EXTRAS",
     items: [
-      { name: "Paratha Small", price: 40 },
-      { name: "Paratha Big", price: 60 },
-      { name: "Chapati", price: 30 },
-      { name: "Mayo Garlic Sauce", price: 80 },
-      { name: "Coleslaw", price: 100 },
+      { name: "Paratha Small", price: 60 },
+      { name: "Paratha Big", price: 100 },
+      { name: "Chapati", price: 20 },
+      { name: "Mayo Garlic Sauce", price: 50 },
+      { name: "Coleslaw", price: 50 },
       { name: "Dinning Roti (Bun)", price: 50 },
-      { name: "Chilli Sauce", price: 60 },
-      { name: "Cheese Slice", price: 70 }
+      { name: "Chilli Sauce", price: 50 },
+      { name: "Cheese Slice", price: 50 }
     ]
   },
   {
     category: "DRINKS",
     items: [
-      { name: "Cold Drink 350ml", price: 100 },
-      { name: "Cold Drink 500ml", price: 120 },
-      { name: "Cold Drink 1 Ltr", price: 150 },
-      { name: "Cold Drink 1.5 Ltr", price: 200 },
-      { name: "Mineral Water Small", price: 60 },
-      { name: "Mineral Water Large", price: 100 }
+      { name: "Cold Drink 350ml", price: 0 },
+      { name: "Cold Drink 500ml", price: 0 },
+      { name: "Cold Drink 1 Ltr", price: 0 },
+      { name: "Cold Drink 1.5 Ltr", price: 0 },
+      { name: "Mineral Water Small", price: 0 },
+      { name: "Mineral Water Large", price: 0 }
     ]
   }
 ];
@@ -687,7 +726,7 @@ const itemImages = {
 
   // BURGERS
   'Regular Beef Burger': 'https://staticcookist.akamaized.net/wp-content/uploads/sites/22/2021/09/beef-burger.jpg',
-  'Beef Cheese Burger': 'https://images.arla.com/recordid/C2988878-79A5-4917-B4E94026A7F77B9B/kraft-x-hassans-juicy-beef-burger-special-edition.jpg',
+  'Beef Cheese Burger': 'https://images.arla.com/recordid/C2988878-79A5-4917-B4E94026A7F77B9F/kraft-x-hassans-juicy-beef-burger-special-edition.jpg',
   'Beef Jumbo Burger': 'https://makanifoods.com/cdn/shop/files/980422.jpg?v=1703925343&width=2000',
   'Beef Jumbo Cheese Burger': 'https://www.shutterstock.com/image-photo/studio-shot-diner-style-burger-600nw-2725579719.jpg',
   'Chicken Burger': 'https://www.thecookingcollective.com.au/wp-content/uploads/2025/03/chicken-burgers-5-of-14-500x500.jpg',
@@ -715,6 +754,11 @@ const itemImages = {
   'Chicken Achari': 'https://151745025.cdn6.editmysite.com/uploads/1/5/1/7/151745025/OP2YEP54VMD5MYWY4AUKW3QZ.jpeg',
   'Chicken Afghani': 'https://i.ytimg.com/vi/UKBy6LBvKqU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAJnjhFxLcdXwCJcVHVq7Zr8YUYLQ',
   'Cheese Lover': 'https://www.homeruninnpizza.com/wp-content/uploads/2023/02/CheeseLovers_MediaTextBlock.jpg',
+  'Chicken Malai Boti': 'https://butteroverbae.com/wp-content/uploads/2025/04/chicken-malai-boti.jpg',
+  'Chicken Kabab Careast': 'https://static.tossdown.com/images/3caf0887-badd-48ca-b5c2-8815063d4e9f.webp',
+  'Hot & Spaicy': 'https://static.tossdown.com/images/3caf0887-badd-48ca-b5c2-8815063d4e9f.webp',
+  'Cheese Paproni': 'https://static.tossdown.com/images/3caf0887-badd-48ca-b5c2-8815063d4e9f.webp',
+  'Caramy Tikka': 'https://static.tossdown.com/images/3caf0887-badd-48ca-b5c2-8815063d4e9f.webp',
 
   // CHINESE
   'Chicken Fried Rice': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDMAfXx8BQs0VKUcMDuY799kKoiJnqJgkdgQ&s',
@@ -722,9 +766,9 @@ const itemImages = {
   'Vegetable Fried Rice': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTey292Onfpb2JbRzo1wv8J0Q8UNaiL552fhg&s',
   'Masala Rice': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBGAmhrnER7bKQK3OxoCHe27YJlD9K9ss6RA&s',
   'Special Hot N Tasty Fried Rice': 'https://www.sharmispassions.com/wp-content/uploads/2013/04/EggFriedRice4-500x500.jpg',
-  'Chicken Chowmen': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHAMC0Z2G27sK1SKFD1ex2-qqmOW7WLm7kCQ&s',
-  'Vegetable Chowmen': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI4puVxXrSRBtCMNDfFo5cs1f5ZaObIl15-A&s',
-  'Hot N Tasty Special Chowmen': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsbjldjhdglXUDIa-P-9u--Dzh9OdPyJZpKw&s',
+  'Chicken Chowmein': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHAMC0Z2G27sK1SKFD1ex2-qqmOW7WLm7kCQ&s',
+  'Vegetable Chowmein': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI4puVxXrSRBtCMNDfFo5cs1f5ZaObIl15-A&s',
+  'Hot N Tasty Special Chowmein': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsbjldjhdglXUDIa-P-9u--Dzh9OdPyJZpKw&s',
   'Chicken Shahslik With Rice': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr_hEEQ6VXpsbDDl7Q2HlDN2ouqsSQXUZkAA&s',
   'Chicken Manchurian With Rice': 'https://i.ytimg.com/vi/rgc9BDPexOk/maxresdefault.jpg',
   'Singapori Rice': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq0-69wSh7gOL9y08eaa8D_4mvYKuN9RIdtw&s',
@@ -758,14 +802,16 @@ const itemImages = {
   'Crispy Club Sandwich': 'https://f000.backblazeb2.com/file/recipekit-bucket/20240725081844-chicken-20bacon-20club-20sandwich-20main-20landscape.jpg',
 
   // KARAHI & HANDI
-  'Chicken Karahi': 'https://i.ytimg.com/vi/HSPDArjEwJM/maxresdefault.jpg',
-  'Chicken Brown Karahi': 'https://www.thenomadiccook.com/wp-content/uploads/2021/11/Chicken-Karahi_1.jpg',
-  'Chicken Shahi Karahi': 'https://i.ytimg.com/vi/uu2-cnumCQo/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAeuUk1sQ3kfgxrfmhqzaleAum7nw',
-  'Chicken White Karahi': 'https://stewwithsaba.com/wp-content/uploads/2023/08/IMG_0585-500x500.jpg?crop=1',
-  'Chicken Achari Karahi': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4wtbBKP66xxma91sRsyQCfiUj24csrBUorA&s',
-  'Chicken Handi': 'https://tiffinandteaofficial.com/wp-content/uploads/2020/10/Untitled-1-1.jpg',
-  'Chicken Brown Handi': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc34PaSSD7nYOUQaAk3cuLKkeyjCXZZH7DAw&s',
-  'Chicken Makhni Handi': 'https://i.ytimg.com/vi/jcNtjjmL70I/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCtHgu-Bo1YDo2Pmk7RKPB6wwuncA',
+  'Chicken Karahi Full': 'https://i.ytimg.com/vi/HSPDArjEwJM/maxresdefault.jpg',
+  'Chicken Karahi Half': 'https://i.ytimg.com/vi/HSPDArjEwJM/maxresdefault.jpg',
+  'Chicken Brown Karahi Full': 'https://www.thenomadiccook.com/wp-content/uploads/2021/11/Chicken-Karahi_1.jpg',
+  'Chicken Brown Karahi Half': 'https://www.thenomadiccook.com/wp-content/uploads/2021/11/Chicken-Karahi_1.jpg',
+  'Chicken Handi Full': 'https://tiffinandteaofficial.com/wp-content/uploads/2020/10/Untitled-1-1.jpg',
+  'Chicken Handi Half': 'https://tiffinandteaofficial.com/wp-content/uploads/2020/10/Untitled-1-1.jpg',
+  'Chicken Brown Handi Full': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc34PaSSD7nYOUQaAk3cuLKkeyjCXZZH7DAw&s',
+  'Chicken Brown Handi Half': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc34PaSSD7nYOUQaAk3cuLKkeyjCXZZH7DAw&s',
+  'Chicken Makhni Handi Full': 'https://i.ytimg.com/vi/jcNtjjmL70I/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCtHgu-Bo1YDo2Pmk7RKPB6wwuncA',
+  'Chicken Makhni Handi Half': 'https://i.ytimg.com/vi/jcNtjjmL70I/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCtHgu-Bo1YDo2Pmk7RKPB6wwuncA',
 
   // PASTA
   'Chicken Tikka Pasta': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0z1Jo0SnU2Wrzk280U7IYZ9XqkMFWZ43-eA&s',
@@ -796,7 +842,13 @@ const itemImages = {
   'Cold Drink 1 Ltr': 'https://static-01.daraz.pk/p/dfb2c67a075ab592ccab85da0434b10f.jpg',
   'Cold Drink 1.5 Ltr': 'https://pizzaloft.pk/wp-content/uploads/2025/04/1-5litre.jpg',
   'Mineral Water Small': 'https://static.tossdown.com/images/a0e7e451-2999-42c6-a72c-7d99618b1d63.webp',
-  'Mineral Water Large': 'https://foodaazz.com/wp-content/uploads/2023/10/819fe373-aa6f-40b8-a288-6b9292f42733.jpeg'
+  'Mineral Water Large': 'https://foodaazz.com/wp-content/uploads/2023/10/819fe373-aa6f-40b8-a288-6b9292f42733.jpeg',
+  
+  // SOUP
+  'Chicken Corn Soup': 'https://static.tossdown.com/images/a0e7e451-2999-42c6-a72c-7d99618b1d63.webp',
+  'Chicken Hot Soup': 'https://static.tossdown.com/images/a0e7e451-2999-42c6-a72c-7d99618b1d63.webp',
+  'Chicken Sour Soup': 'https://static.tossdown.com/images/a0e7e451-2999-42c6-a72c-7d99618b1d63.webp',
+  'Hot N Tasty Soup': 'https://static.tossdown.com/images/a0e7e451-2999-42c6-a72c-7d99618b1d63.webp'
 };
 
 // Default placeholder image
@@ -829,15 +881,15 @@ const testimonials = [
 
 // Category Descriptions & Tags
 const categoryInfo = {
-  'CHICKEN ROLL': {
+  'CHICKEN ROLLS': {
     desc: 'Crispy fried chicken with signature sauce and fresh vegetables wrapped in soft paratha.',
     tag: 'Best Seller'
   },
-  'BEEF BOTI ROLL': {
+  'BEEF BOTI ROLLS': {
     desc: 'Tender beef boti with special spices and mint chutney in freshly baked paratha.',
     tag: 'Popular'
   },
-  'BEEF KABAB ROLL': {
+  'BEEF KABAB ROLLS': {
     desc: 'Succulent beef kababs with our secret blend of spices and signature chutneys.',
     tag: 'Signature'
   },
@@ -853,7 +905,7 @@ const categoryInfo = {
     desc: 'Crispy zinger fillet with lettuce, cheese, and secret sauce in a soft bun.',
     tag: 'Fan Favorite'
   },
-  'PIZZA': {
+  'PIZZA FLAVOURS': {
     desc: 'Wood-fired pizza with premium toppings and three cheese blend.',
     tag: 'Chef\'s Pick'
   },
@@ -885,15 +937,19 @@ const categoryInfo = {
     desc: 'Freshly made sandwiches with premium fillings, crisp vegetables, and artisan bread.',
     tag: 'Fresh'
   },
-  'KARAHI & HANDI': {
-    desc: 'Traditional karahi and handi dishes slow-cooked with aromatic spices.',
+  'KARAHI': {
+    desc: 'Traditional karahi dishes slow-cooked with aromatic spices.',
+    tag: 'Traditional'
+  },
+  'HANDI': {
+    desc: 'Traditional handi dishes slow-cooked with aromatic spices.',
     tag: 'Traditional'
   },
   'PASTA': {
     desc: 'Creamy, indulgent pasta made with fresh ingredients and authentic sauces.',
     tag: 'Creamy'
   },
-  'FRIES': {
+  'FRENCH FRIES': {
     desc: 'Crispy golden fries seasoned to perfection, the perfect side to any meal.',
     tag: 'Crispy'
   },
@@ -904,6 +960,14 @@ const categoryInfo = {
   'DRINKS': {
     desc: 'Refreshing cold beverages to complete your meal experience.',
     tag: 'Refreshing'
+  },
+  'SOUP': {
+    desc: 'Warm and comforting soups made with fresh ingredients.',
+    tag: 'Comfort'
+  },
+  'EXTRA TOPPING': {
+    desc: 'Customize your pizza with extra toppings.',
+    tag: 'Customize'
   }
 };
 
